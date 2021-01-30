@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 
 import { useRouter } from "./hooks";
 
-export type RouteParams = { [s: string]: string };
+export type RouteParams = { [s: string]: string | undefined };
 
 export interface RouteComponentProps<T extends RouteParams = any> {
     params: T;
