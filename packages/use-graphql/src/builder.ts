@@ -41,7 +41,7 @@ function toFieldsDef(flags?: null | AttribMap): string {
     return result.join(" ");
 }
 
-export type ChoicesDeep2<T> = T extends JsonPrimitive
+export type ChoicesDeep2<T> = [T] extends [JsonPrimitive]
     ? Partial<boolean>
     : T extends Array<infer T2>
     ? ChoicesDeep2<T2>
@@ -52,7 +52,7 @@ export type ChoicesDeep<T extends Record<string, any>> = {
 };
 
 export type KeepField<TOpt> = TOpt extends object ? 1 : TOpt extends true ? 1 : 0;
-export type TypeForChoice<T, TOpt> = T extends JsonPrimitive
+export type TypeForChoice<T, TOpt> = [T] extends [JsonPrimitive]
     ? T
     : T extends Array<infer T2>
     ? Array<TypeForChoice<T2, TOpt>>
@@ -63,7 +63,7 @@ export type ChoicesToResult<T extends Record<string, any>, TOpt extends ChoicesD
 
 export type GraphQLResultOf<T> = T extends GraphQLHook<infer TResultData, any, any> ? TResultData : never;
 
-export type FieldChoicesFor<T extends ResultType> = T extends JsonPrimitive
+export type FieldChoicesFor<T extends ResultType> = [T] extends [JsonPrimitive]
     ? never
     : T extends Array<infer T2>
     ? FieldChoicesFor<T2>
@@ -71,7 +71,7 @@ export type FieldChoicesFor<T extends ResultType> = T extends JsonPrimitive
     ? ChoicesDeep<T>
     : never;
 
-export type ReducedResult<T extends ResultType, TFieldChoices> = T extends JsonPrimitive
+export type ReducedResult<T extends ResultType, TFieldChoices> = [T] extends [JsonPrimitive]
     ? T
     : T extends Array<infer T2>
     ? Array<ReducedResult<T2, TFieldChoices>>
@@ -120,9 +120,9 @@ function buildHook(
     };
 }
 
-export type CreateHook<TFullResult extends ResultType, TError, TVars extends VariableType> = TFullResult extends
-    | JsonPrimitive
-    | JsonPrimitive[]
+export type CreateHook<TFullResult extends ResultType, TError, TVars extends VariableType> = [TFullResult] extends [
+    JsonPrimitive | JsonPrimitive[]
+]
     ? () => GraphQLHook<ReducedResult<TFullResult, null>, TError, TVars>
     : <TFieldChoices extends FieldChoicesFor<TFullResult>>(
           fields: TFieldChoices

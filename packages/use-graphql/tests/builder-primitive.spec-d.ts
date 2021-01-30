@@ -1,3 +1,4 @@
+import { expectType } from "tsd";
 import { graphQL } from "../dist";
 import { ErrorDTO, queryUserVariableTypes } from "./types";
 
@@ -29,3 +30,11 @@ mutation.with();
 /// Allowed calls:
 query.with(queryUserVariableTypes).createHook();
 mutation.with(queryUserVariableTypes).createHook();
+
+// Special case where boolean result type resulted in type of data=any
+const useBooleanQuery = graphQL.query<boolean, ErrorDTO>("boolean").createHook();
+useBooleanQuery({
+    onSuccess(value) {
+        expectType<boolean>(value);
+    },
+});
