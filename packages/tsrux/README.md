@@ -16,7 +16,7 @@ The name stands for type-safe [redux](https://redux.js.org/), aside from the blo
 - Deadsimple to use
 - No dependencies!
 - [Fully documented](https://lusito.github.io/react-nano/tsrux)
-- Automated [unit- and type tests](https://travis-ci.org/Lusito/react-nano) with 100% [code coverage](https://coveralls.io/github/Lusito/react-nano)
+- Automated unit- and type tests
 - Liberal license: [zlib/libpng](https://github.com/Lusito/react-nano/blob/master/LICENSE)
 
 ## How to Use

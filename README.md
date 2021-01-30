@@ -1,8 +1,5 @@
 # @react-nano
 
-[![Build Status](https://flat.badgen.net/travis/lusito/react-nano/master?icon=travis&label=tests)](https://travis-ci.org/Lusito/react-nano)
-[![Code Coverage](https://flat.badgen.net/coveralls/c/github/Lusito/react-nano/master?icon=codecov)](https://coveralls.io/github/Lusito/react-nano)
-
 Tiny, powerful and type-safe React libraries. All released under a liberal license: [zlib/libpng](https://github.com/Lusito/react-nano/blob/master/LICENSE)
 
 ## Libraries

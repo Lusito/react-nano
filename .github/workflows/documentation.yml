@@ -9,9 +9,9 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Install
-      run: npm ci
+      run: yarn install --frozen-lockfile
     - name: Build
-      run: npm run docs:build
+      run: yarn docs:build
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
