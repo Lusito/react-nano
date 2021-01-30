@@ -120,11 +120,9 @@ function buildHook(
     };
 }
 
-export type CreateHook<
-    TFullResult extends ResultType,
-    TError,
-    TVars extends VariableType
-> = TFullResult extends JsonPrimitive | JsonPrimitive[]
+export type CreateHook<TFullResult extends ResultType, TError, TVars extends VariableType> = TFullResult extends
+    | JsonPrimitive
+    | JsonPrimitive[]
     ? () => GraphQLHook<ReducedResult<TFullResult, null>, TError, TVars>
     : <TFieldChoices extends FieldChoicesFor<TFullResult>>(
           fields: TFieldChoices

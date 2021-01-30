@@ -47,5 +47,7 @@ export interface GraphQLLocalConfig<TData, TError extends Record<string, any>, T
 
 export const defaultGraphQLConfig = { url: "/graphql" };
 
-export const GraphQLGlobalConfigContext = createContext<GraphQLConfig<unknown, Record<string, unknown>>>(defaultGraphQLConfig);
+export const GraphQLGlobalConfigContext = createContext<GraphQLConfig<unknown, Record<string, unknown>>>(
+    defaultGraphQLConfig
+);
 export const GraphQLGlobalConfigProvider = GraphQLGlobalConfigContext.Provider;

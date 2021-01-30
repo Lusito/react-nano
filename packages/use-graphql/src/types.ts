@@ -1,4 +1,3 @@
-
 export type JsonPrimitive = null | string | number | boolean;
 export type ResultType = JsonPrimitive | Record<string, any>;
 export type VariableType = null | Record<string, any>;

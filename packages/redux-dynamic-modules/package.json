@@ -31,5 +31,8 @@
     "react": "^16.8.0",
     "redux": "^4.0.0",
     "redux-dynamic-modules-core": "^5.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
