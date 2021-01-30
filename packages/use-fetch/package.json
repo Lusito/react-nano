@@ -1,0 +1,40 @@
+{
+  "name": "@react-nano/use-fetch",
+  "version": "0.8.0",
+  "description": "A lightweight fetching hook for react, written in TypeScript",
+  "keywords": [
+    "TypeScript",
+    "react",
+    "fetch",
+    "hooks",
+    "react-hooks"
+  ],
+  "homepage": "https://lusito.github.io/react-nano/",
+  "bugs": {
+    "url": "https://github.com/Lusito/react-nano/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Lusito/react-nano.git"
+  },
+  "license": "Zlib",
+  "author": "Santo Pfingsten",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "rimraf dist && tsc",
+    "test": "echo no tests yet"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.0",
+    "react": "^17.0.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.1.3"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0"
+  }
+}

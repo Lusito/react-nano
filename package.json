@@ -1,0 +1,38 @@
+{
+  "private": true,
+  "workspaces": [
+    "packages/redux",
+    "packages/redux-dynamic-modules",
+    "packages/router",
+    "packages/tsrux",
+    "packages/use-event-source",
+    "packages/use-graphql",
+    "packages/use-fetch"
+  ],
+  "scripts": {
+    "build": "yarn workspaces run build",
+    "docs:build": "vuepress build docs",
+    "docs:dev": "vuepress dev docs",
+    "lint": "yarn run lint:es && yarn run lint:package && yarn run lint:style",
+    "lint:es": "eslint 'packages/*/src/**/*.{ts,tsx}' --ext .ts,.tsx --ignore-path .prettierignore",
+    "lint:es:fix": "yarn run lint:es --fix",
+    "lint:fix": "yarn run lint:es:fix && yarn run lint:package:fix && yarn run lint:style:fix",
+    "lint:package": "yarn run lint:package:fix --check",
+    "lint:package:fix": "sort-package-json package.json 'packages/*/package.json'",
+    "lint:style": "yarn run lint:style:base --check",
+    "lint:style:base": "prettier 'packages/*/src/**/*.{ts,tsx,js,json,scss}' 'packages/*/*.{ts,tsx,js,json,scss}'",
+    "lint:style:fix": "yarn run lint:style:base --write",
+    "release": "lerna publish",
+    "test": "yarn workspaces run test"
+  },
+  "devDependencies": {
+    "@lusito/eslint-config-react": "^1.5.0",
+    "@lusito/prettier-config": "^1.5.0",
+    "eslint-plugin-jest": "^24.1.3",
+    "lerna": "^3.22.1",
+    "prettier": "^2.2.1",
+    "sort-package-json": "^1.48.1",
+    "vuepress": "^1.8.0",
+    "vuepress-plugin-fulltext-search": "^2.1.0"
+  }
+}

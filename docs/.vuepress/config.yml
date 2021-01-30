@@ -1,0 +1,69 @@
+title: '@react-nano'
+description: Tiny, powerful and type-safe React libraries
+base: '/react-nano/'
+themeConfig:
+  nav:
+  - text: Libraries
+    ariaLabel: Libraries Menu
+    items:
+    - text: redux
+      link: /redux/
+    - text: redux-dynamic-modules
+      link: /redux-dynamic-modules/
+    - text: router
+      link: /router/
+    - text: tsrux
+      link: /tsrux/
+    - text: use-event-source
+      link: /use-event-source/
+    - text: use-fetch
+      link: /use-fetch/
+    - text: use-graphql
+      link: /use-graphql/
+  - text: Github
+    link: 'https://github.com/lusito/react-nano'
+  sidebar:
+    '/redux/':
+    - ''
+    - 'setup'
+    - 'provider'
+    - 'hooks'
+    '/redux-dynamic-modules/':
+    - ''
+    '/router/':
+    - ''
+    - 'setup'
+    - 'router'
+    - 'routes'
+    - 'links'
+    - 'hooks'
+    '/tsrux/':
+    - ''
+    - 'setup'
+    - 'action-creators'
+    - 'reducers'
+    - 'types'
+    - 'further-examples'
+    '/use-event-source/':
+    - ''
+    - 'setup'
+    - 'usage'
+    - 'redux'
+    '/use-fetch/':
+    - ''
+    - 'setup'
+    - 'get'
+    - 'modify'
+    - 'api'
+    - 'config'
+    - 'helpers'
+    '/use-graphql/':
+    - ''
+    - 'setup'
+    - 'builder'
+    - 'hook'
+    - 'config'
+  displayAllHeaders: true
+plugins:
+- fulltext-search
+  

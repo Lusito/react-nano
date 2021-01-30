@@ -1,0 +1,35 @@
+{
+  "name": "@react-nano/redux-dynamic-modules",
+  "version": "0.8.0",
+  "homepage": "https://lusito.github.io/react-nano/",
+  "bugs": {
+    "url": "https://github.com/Lusito/react-nano/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Lusito/react-nano.git"
+  },
+  "license": "Zlib",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rimraf dist && tsc",
+    "test": "echo no tests yet"
+  },
+  "devDependencies": {
+    "@react-nano/redux": "^0.8.0",
+    "@types/react": "^17.0.0",
+    "react": "^17.0.1",
+    "redux": "^4.0.5",
+    "redux-dynamic-modules-core": "^5.2.3",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.1.3"
+  },
+  "peerDependencies": {
+    "@react-nano/redux": "^0.8.0",
+    "react": "^16.8.0",
+    "redux": "^4.0.0",
+    "redux-dynamic-modules-core": "^5.0.0"
+  }
+}
