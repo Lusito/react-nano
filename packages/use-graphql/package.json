@@ -1,6 +1,6 @@
 {
   "name": "@react-nano/use-graphql",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "A lightweight, type-safe graphql hook for react, written in TypeScript.",
   "keywords": [
     "TypeScript",
