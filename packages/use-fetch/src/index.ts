@@ -238,7 +238,7 @@ class FetchInstance<TResultData, TError, TVars extends VariableType> {
         if (this.controller) {
             this.controller.abort();
             this.controller = undefined;
-            this.updateState({ type: "loading", value: false });
+            this.mounted && this.updateState({ type: "loading", value: false });
         }
     };
 
@@ -272,7 +272,9 @@ class FetchInstance<TResultData, TError, TVars extends VariableType> {
                 const data = await initializer.getResult(response);
                 if (!this.mounted) return;
                 globalConfig.onSuccess?.(data, responseStatus, response.headers);
+                if (!this.mounted) return;
                 config.onSuccess?.(data, responseStatus, response.headers);
+                if (!this.mounted) return;
                 this.updateState({
                     type: "success",
                     responseStatus: response.status,
@@ -283,7 +285,9 @@ class FetchInstance<TResultData, TError, TVars extends VariableType> {
                 const error = await initializer.getError(response);
                 if (!this.mounted) return;
                 globalConfig.onError?.(error, responseStatus, response.headers);
+                if (!this.mounted) return;
                 config.onError?.(error, responseStatus, response.headers);
+                if (!this.mounted) return;
                 this.updateState({
                     type: "error",
                     responseStatus: response.status,
@@ -294,8 +298,11 @@ class FetchInstance<TResultData, TError, TVars extends VariableType> {
         } catch (error) {
             if (error.name !== "AbortError") {
                 console.log(error);
+                if (!this.mounted) return;
                 globalConfig.onException?.(error);
+                if (!this.mounted) return;
                 config.onException?.(error);
+                if (!this.mounted) return;
                 this.updateState({
                     type: "exception",
                     error,
