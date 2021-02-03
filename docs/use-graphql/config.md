@@ -53,7 +53,7 @@ export interface GraphQLLocalConfig<TData, TError extends Record<string, any>, T
 ```
 
 - All of the properties are optional.
-- Specify `autoSubmit` if you want to send the request without having to call its submit function manually.
+- Specify `autoSubmit` if you want to send the request on component mount without having to call its submit function manually.
   - The value is expected to be `true` for requests without variables and a variable object otherwise.
 - Specify callbacks for certain events instead of watching the state object in a useEffect Hook.
   - The hook will always use the latest version of the callbacks.

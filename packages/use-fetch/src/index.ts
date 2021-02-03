@@ -347,7 +347,8 @@ export function createFetchHook<TResultData, TError, TVars extends VariableType>
                 instance.mounted = false;
                 instance.abort();
             };
-        }, [instance, autoSubmit]);
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, [instance]);
         return [state, instance.submit, instance.abort] as any;
     };
 }

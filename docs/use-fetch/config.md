@@ -30,7 +30,7 @@ function UserComponent(props: { id: number }) {
 
 - All of the properties are optional.
 - You don't need to specify the parameter types (the hook knows them). I only wrote them down for clarity.
-- Specify `autoSubmit` if you want to send the request without having to call its submit function manually.
+- Specify `autoSubmit` if you want to send the request on component mount without having to call its submit function manually.
   - Set this to true if your `prepare` function does not take a data parameter
   - Or set this to the data object your `prepare` function will receive
 - Specify callbacks for certain events instead of watching the state object in a useEffect Hook.

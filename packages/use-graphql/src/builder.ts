@@ -115,7 +115,8 @@ function buildHook(
                 manager.mounted = false;
                 manager.abort();
             };
-        }, [manager, autoSubmit]);
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, [manager]);
         return [state, manager.submit, manager.abort];
     };
 }
