@@ -6,17 +6,21 @@ export interface GraphQLStateBase {
     loading: boolean;
     /** Either an exception occurred or the request returned an error */
     failed: boolean;
+    /** Request was successful */
+    success: boolean;
 }
 
 export interface GraphQLStateEmpty extends GraphQLStateBase {
     state: "empty";
     failed: false;
+    success: false;
 }
 
 export interface GraphQLStateDone extends GraphQLStateBase, GraphQLResponseInfo {}
 
 export interface GraphQLStateDoneSuccess<TData> extends GraphQLStateDone {
     failed: false;
+    success: true;
     /** Data is present */
     state: "success";
     /** The response data in case of success */
@@ -25,6 +29,7 @@ export interface GraphQLStateDoneSuccess<TData> extends GraphQLStateDone {
 
 export interface GraphQLStateDoneError<TError extends Record<string, any>> extends GraphQLStateDone {
     failed: true;
+    success: false;
     /** Errors is present */
     state: "error";
     /** Request has finished with either an error or an exception. */
@@ -33,6 +38,7 @@ export interface GraphQLStateDoneError<TError extends Record<string, any>> exten
 
 export interface GraphQLStateDoneException extends GraphQLStateBase {
     failed: true;
+    success: false;
     /** Errors is present */
     state: "exception";
     /** Request has finished with either an error or an exception. */
@@ -82,6 +88,7 @@ export function stateReducer<TData, TError extends Record<string, any>>(
             return {
                 failed: false,
                 state: "success",
+                success: true,
                 loading: false,
                 data: action.data,
                 responseHeaders: action.responseHeaders,
@@ -90,6 +97,7 @@ export function stateReducer<TData, TError extends Record<string, any>>(
         case "error":
             return {
                 failed: true,
+                success: false,
                 state: "error",
                 loading: false,
                 errors: action.errors,
@@ -99,6 +107,7 @@ export function stateReducer<TData, TError extends Record<string, any>>(
         case "exception":
             return {
                 failed: true,
+                success: false,
                 state: "exception",
                 loading: false,
                 error: action.error,

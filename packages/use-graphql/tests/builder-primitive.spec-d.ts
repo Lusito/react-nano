@@ -1,4 +1,5 @@
 import { expectType } from "tsd";
+
 import { graphQL } from "../dist";
 import { ErrorDTO, queryUserVariableTypes } from "./types";
 

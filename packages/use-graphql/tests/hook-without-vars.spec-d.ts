@@ -22,6 +22,7 @@ if (state.state === "success") {
     expectType<{
         loading: boolean;
         failed: false;
+        success: true;
         state: "success";
         responseHeaders: Headers;
         responseStatus: number;
@@ -38,12 +39,14 @@ if (state.state === "success") {
 } else if (state.state === "empty") {
     expectType<{
         loading: boolean;
+        success: false;
         failed: false;
         state: "empty";
     }>(state);
 } else if (state.state === "error") {
     expectType<{
         loading: boolean;
+        success: false;
         failed: true;
         state: "error";
         responseHeaders: Headers;
@@ -53,6 +56,7 @@ if (state.state === "success") {
 } else if (state.state === "exception") {
     expectType<{
         loading: boolean;
+        success: false;
         failed: true;
         state: "exception";
         error: Error;

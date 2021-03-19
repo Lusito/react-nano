@@ -44,9 +44,9 @@ export function UserSummary({ id }: UserSummaryProps) {
     const [userState] = useUserQuery({ url: "/graphql", autoSubmit: { id } });
 
     // There is more state information available. This is just kept short for an overview!
-    if (userState.state !== "success") return <div>Loading</div>;
+    if (!userState.success) return <div>Loading</div>;
 
-    // Unless you checked for state === "success", userState.data will not exist on the type.
+    // Unless you checked for userState.state === "success" (or userState.success), userState.data will not exist on the type.
     const user = userState.data;
     return (
         <ul>

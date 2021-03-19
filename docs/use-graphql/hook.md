@@ -23,7 +23,7 @@ const useUserQuery = graphQL.query("user")...;
 export function UserSummary({ id }: UserSummaryProps) {
     const [userState] = useUserQuery({ url: "/graphql", autoSubmit: { id } });
 
-    if (userState.state !== "success") return <div>Loading</div>;
+    if (!userState.success) return <div>Loading</div>;
 
     const user = userState.data;
     return (
@@ -47,23 +47,28 @@ export function UserSummary({ id }: UserSummaryProps) {
 The state object always has these properties:
 - `loading: boolean` => Request is currently in progress
 - `failed: boolean;` => Either an exception occurred or the request returned an error
+- `success: boolean;` => Request was successful
 - `type: "empty" | "success" | "error" | "exception"` => The last known state of the request (a new request might be in progress)
 
 Depending on `type`, additional properties might be available:
 - `"empty"` => This is the initial state if no request has returned yet
   - `failed` will always be `false`
+  - `success` will always be `false`
 - `"success` => This is the state when a request returned successful.
   - `failed` will always be `false`
+  - `success` will always be `true`
   - `responseStatus: number;` => The status code of the response
   - `responseHeaders: Headers;` => The headers of the response
   - `data: ResultType` => The server result
 - `"error"` => The server responded with an error.
   - `failed` will always be `true`
+  - `success` will always be `false`
   - `responseStatus: number;` => The status code of the response
   - `responseHeaders: Headers;` => The headers of the response
   - `errors: ErrorType[];` => The list of errors returned by the server
 - `"exception"` => An exception has been thrown in JavaScript
   - `failed` will always be `true`
+  - `success` will always be `false`
   - `errors: Error;` => The error that has been thrown
 
 ## The Submit Function

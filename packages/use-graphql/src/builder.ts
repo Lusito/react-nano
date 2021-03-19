@@ -97,6 +97,7 @@ function buildHook(
     return (config) => {
         const [state, updateState] = useReducer(stateReducer, {
             failed: false,
+            success: false,
             state: "empty",
             loading: !!config?.autoSubmit,
         });
