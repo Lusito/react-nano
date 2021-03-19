@@ -228,9 +228,13 @@ export class GraphQLStateManager<TResultData, TError> {
             if (error.name !== "AbortError") {
                 console.log(error);
                 if (!this.mounted) return;
-                globalConfig.onException?.(error);
+                const context = {
+                    inputData: variables,
+                    error,
+                };
+                globalConfig.onException?.(context);
                 if (!this.mounted) return;
-                config.onException?.(error);
+                config.onException?.(context);
                 if (!this.mounted) return;
                 this.updateState({
                     type: "exception",

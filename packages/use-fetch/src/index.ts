@@ -339,7 +339,7 @@ class FetchInstance<TResultData, TError, TVars extends VariableType> {
                 };
                 globalConfig.onException?.(context);
                 if (!this.mounted) return;
-                config.onException?.(error);
+                config.onException?.(context);
                 if (!this.mounted) return;
                 this.updateState({
                     type: "exception",
