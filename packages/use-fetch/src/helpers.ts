@@ -4,17 +4,23 @@ export interface FetchRequestInit extends RequestInit {
     readonly signal: AbortSignal;
 }
 
-export function prepareGet(init: FetchRequestInit) {
-    init.method = "GET";
+export type HttpMethod = "GET" | "POST" | "PATCH" | "PUT" | "DELETE" | "HEAD" | "CONNECT" | "OPTIONS" | "TRACE";
+
+export function prepareInit(init: FetchRequestInit, method: HttpMethod) {
+    init.method = method;
     init.credentials = "include";
     init.headers.set("Accept", "application/json");
 }
 
-export function preparePost(init: FetchRequestInit) {
-    init.method = "POST";
-    init.credentials = "include";
-    init.headers.set("Accept", "application/json");
-}
+export const prepareGet = (init: FetchRequestInit) => prepareInit(init, "GET");
+
+export const preparePost = (init: FetchRequestInit) => prepareInit(init, "POST");
+
+export const preparePatch = (init: FetchRequestInit) => prepareInit(init, "PATCH");
+
+export const preparePut = (init: FetchRequestInit) => prepareInit(init, "PUT");
+
+export const prepareDelete = (init: FetchRequestInit) => prepareInit(init, "DELETE");
 
 export function preparePostUrlEncoded(init: FetchRequestInit) {
     preparePost(init);

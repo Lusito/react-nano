@@ -6,7 +6,7 @@ The following functions will initialize the `RequestInit` object for specific us
 All of them will set`credentials` to `"include"` and a header `Accept` with value of `"application/json"`
 
 - `prepareGet` prepares a GET request
-- `preparePost` prepares a form-data POST request.
+- `preparePost/Patch/Put/Delete` prepares a form-data POST/PATCH/PUT/DELETE request.
 - `preparePostUrlEncoded` prepares a form url-encoded POST request
 - `prepareFormDataPost` prepares a POST request with a `FormData` object and detects if it contains files.
   - if it contains files, it will call `preparePost` and set the body to the formData object.
