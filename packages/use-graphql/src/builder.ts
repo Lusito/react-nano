@@ -102,7 +102,7 @@ function buildHook(
             loading: !!config?.autoSubmit,
         });
         const manager = useMemo(() => new GraphQLStateManager(query, name, updateState), []);
-        manager.globalConfig = useContext(GraphQLGlobalConfigContext) as GraphQLConfig<any, any>;
+        manager.globalConfig = useContext(GraphQLGlobalConfigContext) as GraphQLConfig<any, any, any>;
         manager.config = config;
         const autoSubmit = config?.autoSubmit;
         useLayoutEffect(() => {

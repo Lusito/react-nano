@@ -4,7 +4,7 @@ import { FetchRequestInit } from "./helpers";
 
 export * from "./helpers";
 
-const FetchGlobalConfigContext = createContext<FetchConfig<unknown, Record<string, unknown>>>({});
+const FetchGlobalConfigContext = createContext<FetchConfig<unknown, Record<string, unknown>, unknown>>({});
 export const FetchGlobalConfigProvider = FetchGlobalConfigContext.Provider;
 
 export interface FetchResponseInfo {
@@ -40,7 +40,7 @@ export interface FetchStateDoneSuccess<TData> extends FetchStateDone {
     data: TData;
 }
 
-export interface FetchStateDoneError<TError extends Record<string, any>> extends FetchStateDone {
+export interface FetchStateDoneError<TError> extends FetchStateDone {
     failed: true;
     success: false;
     /** Errors is present */
@@ -58,13 +58,40 @@ export interface FetchStateDoneException extends FetchStateBase {
     error: Error;
 }
 
-export type FetchState<TData, TError extends Record<string, any>> =
+export type FetchState<TData, TError> =
     | FetchStateEmpty
     | FetchStateDoneSuccess<TData>
     | FetchStateDoneError<TError>
     | FetchStateDoneException;
 
-export interface FetchConfig<TData, TError extends Record<string, any>> {
+export interface CallbackContext<TVars> {
+    /** The data you used to submit the request */
+    inputData: TVars;
+}
+
+export interface CallbackContextWithResponse<TVars> extends CallbackContext<TVars> {
+    /** The status code of the request */
+    status: number;
+    /** The response headers headers of the request */
+    responseHeaders: Headers;
+}
+
+export interface OnSuccessContext<TVars, TData> extends CallbackContextWithResponse<TVars> {
+    /** The result of the fetch */
+    data: TData;
+}
+
+export interface OnErrorContext<TVars, TError> extends CallbackContextWithResponse<TVars> {
+    /** The error data the server returned for the fetch */
+    error: TError;
+}
+
+export interface OnExceptionContext<TVars> extends CallbackContext<TVars> {
+    /** The error that was thrown. */
+    error: Error;
+}
+
+export interface FetchConfig<TData, TError, TVars> {
     /**
      * Called right before a request will be made. Use it to extend the request with additional information like authorization headers.
      *
@@ -75,33 +102,28 @@ export interface FetchConfig<TData, TError extends Record<string, any>> {
     /**
      * Called on successful request with the result
      *
-     * @param data The result of the fetch
-     * @param status The status code of the request
-     * @param responseHeaders The response headers headers of the request
+     * @param context Information about the request
      */
-    onSuccess?(data: TData, status: number, responseHeaders: Headers): void;
+    onSuccess?(context: OnSuccessContext<TVars, TData>): void;
 
     /**
      * Called on server error
      *
-     * @param data The error data the server returned for the fetch
-     * @param status The status code of the request
-     * @param responseHeaders The response headers headers of the request
+     * @param context Information about the request
      */
-    onError?(data: TError, status: number, responseHeaders: Headers): void;
+    onError?(context: OnErrorContext<TVars, TError>): void;
 
     /**
      * Called when an exception happened in the frontend
      *
-     * @param error The error that was thrown.
+     * @param context Information about the request
      */
-    onException?(error: Error): void;
+    onException?(context: OnExceptionContext<TVars>): void;
 }
 
 export type VariableType = null | Record<string, any>;
 
-export interface FetchLocalConfig<TData, TError extends Record<string, any>, TVars extends VariableType>
-    extends FetchConfig<TData, TError> {
+export interface FetchLocalConfig<TData, TError, TVars extends VariableType> extends FetchConfig<TData, TError, TVars> {
     /** Specify to cause the request to be submitted automatically */
     autoSubmit?: TVars extends null ? true : TVars;
 }
@@ -152,7 +174,7 @@ interface FetchActionSuccess<TData> extends FetchResponseInfo {
     type: "success";
     data: TData;
 }
-interface FetchActionError<TError extends Record<string, any>> extends FetchResponseInfo {
+interface FetchActionError<TError> extends FetchResponseInfo {
     type: "error";
     error: TError;
 }
@@ -161,13 +183,13 @@ interface FetchActionException {
     error: Error;
 }
 
-type FetchAction<TData, TError extends Record<string, any>> =
+type FetchAction<TData, TError> =
     | FetchActionLoading
     | FetchActionSuccess<TData>
     | FetchActionError<TError>
     | FetchActionException;
 
-function stateReducer<TData, TError extends Record<string, any>>(
+function stateReducer<TData, TError>(
     state: FetchState<TData, TError>,
     action: FetchAction<TData, TError>
 ): FetchState<TData, TError> {
@@ -210,9 +232,9 @@ function stateReducer<TData, TError extends Record<string, any>>(
 }
 
 class FetchInstance<TResultData, TError, TVars extends VariableType> {
-    public globalConfig?: FetchConfig<TResultData, TError>;
+    public globalConfig?: FetchConfig<TResultData, TError, TVars>;
 
-    public config?: FetchConfig<TResultData, TError>;
+    public config?: FetchConfig<TResultData, TError, TVars>;
 
     public mounted = true;
 
@@ -271,9 +293,15 @@ class FetchInstance<TResultData, TError, TVars extends VariableType> {
             if (response.ok) {
                 const data = await initializer.getResult(response);
                 if (!this.mounted) return;
-                globalConfig.onSuccess?.(data, responseStatus, response.headers);
+                const context = {
+                    inputData: requestData,
+                    data,
+                    status: responseStatus,
+                    responseHeaders: response.headers,
+                };
+                globalConfig.onSuccess?.(context);
                 if (!this.mounted) return;
-                config.onSuccess?.(data, responseStatus, response.headers);
+                config.onSuccess?.(context);
                 if (!this.mounted) return;
                 this.updateState({
                     type: "success",
@@ -284,9 +312,15 @@ class FetchInstance<TResultData, TError, TVars extends VariableType> {
             } else {
                 const error = await initializer.getError(response);
                 if (!this.mounted) return;
-                globalConfig.onError?.(error, responseStatus, response.headers);
+                const context = {
+                    inputData: requestData,
+                    error,
+                    status: responseStatus,
+                    responseHeaders: response.headers,
+                };
+                globalConfig.onError?.(context);
                 if (!this.mounted) return;
-                config.onError?.(error, responseStatus, response.headers);
+                config.onError?.(context);
                 if (!this.mounted) return;
                 this.updateState({
                     type: "error",
@@ -299,7 +333,11 @@ class FetchInstance<TResultData, TError, TVars extends VariableType> {
             if (error.name !== "AbortError") {
                 console.log(error);
                 if (!this.mounted) return;
-                globalConfig.onException?.(error);
+                const context = {
+                    inputData: requestData,
+                    error,
+                };
+                globalConfig.onException?.(context);
                 if (!this.mounted) return;
                 config.onException?.(error);
                 if (!this.mounted) return;
@@ -333,7 +371,7 @@ export function createFetchHook<TResultData, TError, TVars extends VariableType>
             loading: !!config?.autoSubmit,
         });
         const instance = useMemo(() => new FetchInstance(initializer, updateState), []);
-        instance.globalConfig = useContext(FetchGlobalConfigContext) as FetchConfig<TResultData, TError>;
+        instance.globalConfig = useContext(FetchGlobalConfigContext) as FetchConfig<TResultData, TError, TVars>;
         instance.config = config;
         const autoSubmit = config?.autoSubmit;
         useLayoutEffect(() => {

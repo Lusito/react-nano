@@ -1,7 +1,7 @@
 import { expectType } from "tsd";
 
 import { graphQL } from "../dist";
-import { ErrorDTO, queryUserVariableTypes } from "./types";
+import { ErrorDTO, QueryUserVariables, queryUserVariableTypes } from "./types";
 
 const query = graphQL.query<number, ErrorDTO>("time");
 const mutation = graphQL.mutation<number, ErrorDTO>("time");
@@ -32,10 +32,29 @@ mutation.with();
 query.with(queryUserVariableTypes).createHook();
 mutation.with(queryUserVariableTypes).createHook();
 
-// Special case where boolean result type resulted in type of data=any
-const useBooleanQuery = graphQL.query<boolean, ErrorDTO>("boolean").createHook();
+// callback types must be correct
+const useBooleanQuery = graphQL.query<boolean, ErrorDTO>("boolean").with(queryUserVariableTypes).createHook();
 useBooleanQuery({
-    onSuccess(value) {
-        expectType<boolean>(value);
+    onSuccess(context) {
+        expectType<{
+            data: boolean;
+            inputData: QueryUserVariables;
+            status: number;
+            responseHeaders: Headers;
+        }>(context);
+    },
+    onError(context) {
+        expectType<{
+            errors: ErrorDTO[];
+            inputData: QueryUserVariables;
+            status: number;
+            responseHeaders: Headers;
+        }>(context);
+    },
+    onException(context) {
+        expectType<{
+            error: Error;
+            inputData: QueryUserVariables;
+        }>(context);
     },
 });

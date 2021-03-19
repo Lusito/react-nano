@@ -10,17 +10,17 @@ Let's take a look at the local configuration first:
 ```tsx
 function UserComponent(props: { id: number }) {
     const [getUser] = useGetUser({
-        onInit(init: FetchRequestInit) {
+        onInit(init) {
             init.headers.set("Authorization", "...");
         }
-        onSuccess(result: UserDTO, status: number, responseHeaders: Headers) {
-            console.log('success', result, status, responseHeaders);
+        onSuccess(context) {
+            console.log('success', context.data, context.status, context.responseHeaders);
         },
-        onError(errorResult: RestValidationErrorDTO, status: number, responseHeaders: Headers) {
-            console.log('error', errorResult, status, responseHeaders);
+        onError(context) {
+            console.log('error', context.error, context.status, context.responseHeaders);
         },
-        onException(error: Error) {
-            console.log('exception', error);
+        onException(context) {
+            console.log('exception', context.error);
         },
         autoSubmit: { id: data.id },
     });
@@ -29,13 +29,45 @@ function UserComponent(props: { id: number }) {
 ```
 
 - All of the properties are optional.
-- You don't need to specify the parameter types (the hook knows them). I only wrote them down for clarity.
 - Specify `autoSubmit` if you want to send the request on component mount without having to call its submit function manually.
   - Set this to true if your `prepare` function does not take a data parameter
   - Or set this to the data object your `prepare` function will receive
 - Specify callbacks for certain events instead of watching the state object in a useEffect Hook.
   - The hook will always use the latest version of the callbacks.
   - If the component making the request has been unmounted, the callbacks will not be called.
+
+### Callback Context
+
+The context parameter has different properties depending on the callback:
+
+```TypeScript
+export interface CallbackContext<TVars> {
+    /** The data you used to submit the request */
+    inputData: TVars;
+}
+
+export interface CallbackContextWithResponse<TVars> extends CallbackContext<TVars> {
+    /** The status code of the request */
+    status: number;
+    /** The response headers headers of the request */
+    responseHeaders: Headers;
+}
+
+export interface OnSuccessContext<TVars, TData> extends CallbackContextWithResponse<TVars> {
+    /** The result of the fetch */
+    data: TData;
+}
+
+export interface OnErrorContext<TVars, TError> extends CallbackContextWithResponse<TVars> {
+    /** The error data the server returned for the fetch */
+    error: TError;
+}
+
+export interface OnExceptionContext<TVars> extends CallbackContext<TVars> {
+    /** The error that was thrown. */
+    error: Error;
+}
+```
 
 ## Global Configuration
 

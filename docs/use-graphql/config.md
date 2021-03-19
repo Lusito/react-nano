@@ -8,7 +8,7 @@ Both configurations have the same attributes, except that the local config has o
 Let's take a look at the local configuration first:
 
 ```TypeScript
-export interface GraphQLConfig<TData, TError extends Record<string, any>> {
+export interface GraphQLConfig<TData, TError extends Record<string, any>, TVars> {
     /** The url to use. Defaults to "/graphql" if neither global nor local config specifies it */
     url?: string;
 
@@ -22,31 +22,27 @@ export interface GraphQLConfig<TData, TError extends Record<string, any>> {
     /**
      * Called on successful request with the result
      *
-     * @param data The result of the query/mutation
-     * @param status The status code of the request
-     * @param responseHeaders The response headers headers of the request
+     * @param context Information about the request
      */
-    onSuccess?(data: TData, status: number, responseHeaders: Headers): void;
+    onSuccess?(context: OnSuccessContext<TVars, TData>): void;
 
     /**
      * Called on server error
      *
-     * @param errors The errors the server returned for the query/mutation
-     * @param status The status code of the request
-     * @param responseHeaders The response headers headers of the request
+     * @param context Information about the request
      */
-    onError?(errors: TError[], status: number, responseHeaders: Headers): void;
+    onError?(context: OnErrorContext<TVars, TError>): void;
 
     /**
      * Called when an exception happened in the frontend
      *
-     * @param error The error that was thrown.
+     * @param context Information about the request
      */
-    onException?(error: Error): void;
+    onException?(context: OnExceptionContext<TVars>): void;
 }
 
 export interface GraphQLLocalConfig<TData, TError extends Record<string, any>, TVars extends VariableType>
-    extends GraphQLConfig<TData, TError> {
+    extends GraphQLConfig<TData, TError, TVars> {
     /** Specify to cause the request to be submitted automatically */
     autoSubmit?: TVars extends null ? true : TVars;
 }
@@ -59,6 +55,39 @@ export interface GraphQLLocalConfig<TData, TError extends Record<string, any>, T
   - The hook will always use the latest version of the callbacks.
   - If the component making the request has been unmounted, the callbacks will not be called.
 - Take a look at the [hook description](hook.md) hook to see how to specify this config.
+
+### Callback Context
+
+The context parameter has different properties depending on the callback:
+
+```TypeScript
+export interface CallbackContext<TVars> {
+    /** The data you used to submit the request */
+    inputData: TVars;
+}
+
+export interface CallbackContextWithResponse<TVars> extends CallbackContext<TVars> {
+    /** The status code of the request */
+    status: number;
+    /** The response headers headers of the request */
+    responseHeaders: Headers;
+}
+
+export interface OnSuccessContext<TVars, TData> extends CallbackContextWithResponse<TVars> {
+    /** The result of the query/mutation */
+    data: TData;
+}
+
+export interface OnErrorContext<TVars, TError> extends CallbackContextWithResponse<TVars> {
+    /** The errors the server returned for the query/mutation */
+    errors: TError[];
+}
+
+export interface OnExceptionContext<TVars> extends CallbackContext<TVars> {
+    /** The error that was thrown. */
+    error: Error;
+}
+```
 
 ## Global Configuration
 

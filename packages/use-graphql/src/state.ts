@@ -117,9 +117,9 @@ export function stateReducer<TData, TError extends Record<string, any>>(
 }
 
 export class GraphQLStateManager<TResultData, TError> {
-    public globalConfig?: GraphQLConfig<TResultData, TError>;
+    public globalConfig?: GraphQLConfig<TResultData, TError, unknown>;
 
-    public config?: GraphQLConfig<TResultData, TError>;
+    public config?: GraphQLConfig<TResultData, TError, unknown>;
 
     public mounted = true;
 
@@ -156,8 +156,8 @@ export class GraphQLStateManager<TResultData, TError> {
     private async submitAsync(variables?: Record<string, any>) {
         if (!this.mounted) return;
 
-        const globalConfig = this.globalConfig ?? (defaultGraphQLConfig as GraphQLConfig<TResultData, TError>);
-        const config = this.config ?? (defaultGraphQLConfig as GraphQLConfig<TResultData, TError>);
+        const globalConfig = this.globalConfig ?? (defaultGraphQLConfig as GraphQLConfig<TResultData, TError, unknown>);
+        const config = this.config ?? (defaultGraphQLConfig as GraphQLConfig<TResultData, TError, unknown>);
         let responseStatus = -1;
         try {
             this.controller?.abort();
@@ -189,9 +189,15 @@ export class GraphQLStateManager<TResultData, TError> {
 
             if (response.ok && !json.errors) {
                 const data: TResultData = json.data[this.queryName];
-                globalConfig.onSuccess?.(data, responseStatus, response.headers);
+                const context = {
+                    inputData: variables,
+                    data,
+                    status: responseStatus,
+                    responseHeaders: response.headers,
+                };
+                globalConfig.onSuccess?.(context);
                 if (!this.mounted) return;
-                config.onSuccess?.(data, responseStatus, response.headers);
+                config.onSuccess?.(context);
                 if (!this.mounted) return;
                 this.updateState({
                     type: "success",
@@ -201,9 +207,15 @@ export class GraphQLStateManager<TResultData, TError> {
                 });
             } else {
                 const { errors } = json;
-                globalConfig.onError?.(errors, responseStatus, response.headers);
+                const context = {
+                    inputData: variables,
+                    errors,
+                    status: responseStatus,
+                    responseHeaders: response.headers,
+                };
+                globalConfig.onError?.(context);
                 if (!this.mounted) return;
-                config.onError?.(errors, responseStatus, response.headers);
+                config.onError?.(context);
                 if (!this.mounted) return;
                 this.updateState({
                     type: "error",

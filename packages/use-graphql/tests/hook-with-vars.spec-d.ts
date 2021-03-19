@@ -1,7 +1,7 @@
 import { expectType } from "tsd";
 
 import { graphQL } from "../dist";
-import { ErrorDTO, queryUserVariableTypes, UserDTO } from "./types";
+import { ErrorDTO, QueryUserVariables, queryUserVariableTypes, UserDTO } from "./types";
 
 const useUserQuery = graphQL
     .query<UserDTO, ErrorDTO>("user")
@@ -80,3 +80,38 @@ useUserQuery({ url: "/graphql", autoSubmit: { id: "some-id", foo: "bar" } });
 
 // autoSubmit must be object
 useUserQuery({ url: "/graphql", autoSubmit: { id: "some-id" } });
+
+// callback types must be correct
+useUserQuery({
+    url: "/graphql",
+    onSuccess(context) {
+        expectType<{
+            data: {
+                name: string;
+                icon: string;
+                posts: Array<{
+                    id: number;
+                    title: string;
+                    hits: number;
+                }>;
+            };
+            inputData: QueryUserVariables;
+            status: number;
+            responseHeaders: Headers;
+        }>(context);
+    },
+    onError(context) {
+        expectType<{
+            errors: ErrorDTO[];
+            inputData: QueryUserVariables;
+            status: number;
+            responseHeaders: Headers;
+        }>(context);
+    },
+    onException(context) {
+        expectType<{
+            error: Error;
+            inputData: QueryUserVariables;
+        }>(context);
+    },
+});
