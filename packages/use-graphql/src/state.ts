@@ -224,7 +224,7 @@ export class GraphQLStateManager<TResultData, TError> {
                     errors,
                 });
             }
-        } catch (error) {
+        } catch (error: any) {
             if (error.name !== "AbortError") {
                 console.log(error);
                 if (!this.mounted) return;

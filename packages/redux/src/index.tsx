@@ -39,7 +39,7 @@ export function useStore<TState = any, TAction extends Action = AnyAction>() {
     if (!store) {
         throw new Error("Could not find react redux context. Make sure you've added a Provider.");
     }
-    return (store as unknown) as Store<TState, TAction>;
+    return store as unknown as Store<TState, TAction>;
 }
 
 /** Compare by reference */

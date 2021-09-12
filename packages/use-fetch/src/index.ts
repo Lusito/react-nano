@@ -329,7 +329,7 @@ class FetchInstance<TResultData, TError, TVars extends VariableType> {
                     error,
                 });
             }
-        } catch (error) {
+        } catch (error: any) {
             if (error.name !== "AbortError") {
                 console.log(error);
                 if (!this.mounted) return;
