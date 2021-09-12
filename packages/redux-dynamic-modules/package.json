@@ -1,6 +1,6 @@
 {
   "name": "@react-nano/redux-dynamic-modules",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "homepage": "https://lusito.github.io/react-nano/",
   "bugs": {
     "url": "https://github.com/Lusito/react-nano/issues"
@@ -18,7 +18,7 @@
     "test": "echo no tests yet"
   },
   "devDependencies": {
-    "@react-nano/redux": "^0.10.0",
+    "@react-nano/redux": "^0.11.0",
     "@types/react": "^17.0.20",
     "react": "^17.0.2",
     "redux": "^4.1.1",
