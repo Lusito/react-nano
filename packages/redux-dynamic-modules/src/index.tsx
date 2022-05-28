@@ -1,4 +1,4 @@
-import React, { useEffect, PropsWithChildren, useState } from "react";
+import { useEffect, PropsWithChildren, useState } from "react";
 import { IModuleStore, IModuleTuple } from "redux-dynamic-modules-core";
 import { useStore } from "@react-nano/redux";
 
@@ -22,5 +22,5 @@ export const DynamicModuleLoader = ({ modules, children }: PropsWithChildren<Dyn
         return () => added.remove();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [store]);
-    return active ? <>{children}</> : null;
+    return active ? children : null;
 };

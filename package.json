@@ -26,13 +26,13 @@
     "test": "yarn workspaces run test"
   },
   "devDependencies": {
-    "@lusito/eslint-config-react": "^1.7.0",
-    "@lusito/prettier-config": "^1.7.0",
-    "eslint-plugin-jest": "^24.4.0",
-    "lerna": "^4.0.0",
-    "prettier": "^2.4.0",
-    "sort-package-json": "^1.51.0",
-    "vuepress": "^1.8.2",
+    "@lusito/eslint-config-react": "^2.0.3",
+    "@lusito/prettier-config": "^2.0.0",
+    "eslint-plugin-jest": "^26.3.0",
+    "lerna": "^5.0.0",
+    "prettier": "^2.6.2",
+    "sort-package-json": "^1.57.0",
+    "vuepress": "^1.9.7",
     "vuepress-plugin-fulltext-search": "^2.2.1"
   }
 }

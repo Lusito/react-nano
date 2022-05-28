@@ -45,7 +45,7 @@ export function mapReducers<TState, TReducerMap extends ReducerMap<TState, any>>
     setup: (handle: ReducerMapHandler<TState>) => TReducerMap[]
 ): (state: TState | undefined, action: ReducerMapActions<TReducerMap>) => TState {
     const map = Object.assign({}, ...setup((actionCreator, reducer) => ({ [actionCreator.type]: reducer } as any)));
-    // eslint-disable-next-line @typescript-eslint/default-param-last
+    // eslint-disable-next-line default-param-last, @typescript-eslint/default-param-last
     return (state = defaultState, action) => {
         const reducer = map[action.type];
         return reducer ? reducer(state, action) : state;
