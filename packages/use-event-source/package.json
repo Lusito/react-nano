@@ -1,6 +1,6 @@
 {
   "name": "@react-nano/use-event-source",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "A lightweight EventSource (server-sent-events) hook for react, written in TypeScript",
   "keywords": [
     "TypeScript",
