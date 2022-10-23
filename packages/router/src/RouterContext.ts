@@ -21,7 +21,7 @@ export const RouterContext = createContext<RouterContextValue>({
     history: {
         push: throwMissingDefault,
         replace: throwMissingDefault,
-        stop: throwMissingDefault,
+        onChange: throwMissingDefault,
         urlTo: throwMissingDefault,
     },
     matchRoute: throwMissingDefault,

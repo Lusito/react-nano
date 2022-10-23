@@ -32,6 +32,9 @@ export const Router = ({
         }),
         [basename, path, history, matchRoute]
     );
-    useEffect(() => history.stop, [history]);
+    useEffect(() => {
+        window.addEventListener("popstate", history.onChange);
+        return () => window.removeEventListener("popstate", history.onChange);
+    }, [history]);
     return <RouterContext.Provider value={router}>{children}</RouterContext.Provider>;
 };

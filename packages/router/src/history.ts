@@ -3,7 +3,7 @@ import { getPathWithoutBasename } from "./basename";
 export interface RouterHistory {
     push: (path: string) => void;
     replace: (path: string) => void;
-    stop: () => void;
+    onChange: () => void;
     urlTo: (path: string) => string;
 }
 
@@ -17,7 +17,6 @@ export function createHistory(hashMode: boolean, basename: string, setPath: (pat
         ? (path: string) => `${location.pathname}${location.search}#${path}`
         : (path: string) => `${basename}${path}`;
 
-    window.addEventListener("popstate", onChange);
     return {
         push(path: string) {
             const newPath = urlTo(path);
@@ -29,9 +28,7 @@ export function createHistory(hashMode: boolean, basename: string, setPath: (pat
             history.replaceState({}, "", urlTo(path));
             onChange();
         },
-        stop() {
-            window.removeEventListener("popstate", onChange);
-        },
+        onChange,
         urlTo,
     };
 }
