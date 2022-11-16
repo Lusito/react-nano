@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+    <url><loc>https://lusito.github.io/react-nano/</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/all.html</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/redux/</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/redux/hooks.html</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/redux/migrating-from-react-redux.html</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/redux/provider.html</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/redux/setup.html</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/redux-dynamic-modules/</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/redux-dynamic-modules/setup.html</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/router/</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/router/hooks.html</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/router/links.html</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/router/router.html</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/router/routes.html</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/router/setup.html</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/tsrux/</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/tsrux/action-creators.html</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/tsrux/further-examples.html</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/tsrux/reducers.html</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/tsrux/setup.html</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/tsrux/types.html</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/use-event-source/</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/use-event-source/redux.html</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/use-event-source/setup.html</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/use-event-source/usage.html</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/use-graphql/</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/use-graphql/builder.html</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/use-graphql/config.html</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/use-graphql/hook.html</loc></url>
+    <url><loc>https://lusito.github.io/react-nano/use-graphql/setup.html</loc></url>
+</urlset>
