@@ -2,7 +2,6 @@
 siteName: '@react-nano'
 title: ''
 description: Tiny, powerful and type-safe React libraries
-siteUrl: 'https://lusito.github.io/react-nano'
 footer:
   - Zlib/Libpng License | https://github.com/Lusito/react-nano/blob/master/LICENSE
   - Copyright © 2022 Santo Pfingsten
