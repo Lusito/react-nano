@@ -22,7 +22,7 @@
   "devDependencies": {
     "@lusito/eslint-config-react": "^2.0.3",
     "@lusito/mono": "^0.8.2",
-    "@lusito/mono-docs": "^0.8.6",
+    "@lusito/mono-docs": "^0.8.7",
     "@lusito/prettier-config": "^2.0.0",
     "eslint-plugin-jest": "^26.3.0",
     "nodemon": "^2.0.20",
