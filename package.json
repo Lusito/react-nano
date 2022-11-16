@@ -11,8 +11,8 @@
   ],
   "scripts": {
     "build": "yarn workspaces run build",
-    "docs:build": "vuepress build docs",
-    "docs:dev": "vuepress dev docs",
+    "docs:build": "rimraf docs-dist && mono-docs . docs-dist",
+    "docs:dev": "nodemon --ignore \"docs-dist\" --ignore node_modules --ignore dist -e ts,tsx,md,scss,png,webp --exec \"yarn docs:build serve\"",
     "lint": "yarn run lint:es && yarn run lint:package && yarn run lint:style",
     "lint:es": "eslint \"packages/*/src/**/*.{ts,tsx}\" --ext \".ts,.tsx\" --ignore-path .prettierignore",
     "lint:es:fix": "yarn run lint:es --fix",
@@ -27,12 +27,12 @@
   },
   "devDependencies": {
     "@lusito/eslint-config-react": "^2.0.3",
+    "@lusito/mono-docs": "^0.8.3",
     "@lusito/prettier-config": "^2.0.0",
     "eslint-plugin-jest": "^26.3.0",
     "lerna": "^5.0.0",
+    "nodemon": "^2.0.20",
     "prettier": "^2.6.2",
-    "sort-package-json": "^1.57.0",
-    "vuepress": "^1.9.7",
-    "vuepress-plugin-fulltext-search": "^2.2.1"
+    "sort-package-json": "^1.57.0"
   }
 }

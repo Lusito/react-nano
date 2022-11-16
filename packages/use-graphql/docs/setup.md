@@ -6,21 +6,11 @@ This library is shipped as es2015 modules. To use them in browsers, you'll have 
 
 Ensure you have at least TypeScript 4.1 in your setup.
 
-## Install via NPM or YARN
+## Install via NPM
 
-<code-group>
-<code-block title="NPM" active>
 ```bash
 npm i @react-nano/use-graphql
 ```
-</code-block>
-
-<code-block title="YARN">
-```bash
-yarn add @react-nano/use-graphql
-```
-</code-block>
-</code-group>
 
 ## Define Types
 

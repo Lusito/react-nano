@@ -1,8 +1,24 @@
+---
+title: 'use-fetch'
+description: Lightweight fetching hooks for react, written in TypeScript.
+keywords:
+  - react
+  - hooks
+  - fetch
+sidebar:
+  - 'setup'
+  - 'get'
+  - 'modify'
+  - 'api'
+  - 'config'
+  - 'helpers'
+---
+
 # @react-nano/use-fetch
 
 [![License](https://flat.badgen.net/github/license/lusito/react-nano?icon=github)](https://github.com/Lusito/react-nano/blob/master/LICENSE)
 [![Minified + gzipped size](https://flat.badgen.net/bundlephobia/minzip/@react-nano/use-fetch?icon=dockbit)](https://bundlephobia.com/result?p=@react-nano/use-fetch)
-[![NPM version](https://flat.badgen.net/npm/v/@react-nano/@react-nano/use-fetch?icon=npm)](https://www.npmjs.com/package/@react-nano/use-fetch)
+[![NPM version](https://flat.badgen.net/npm/v/@react-nano/use-fetch?icon=npm)](https://www.npmjs.com/package/@react-nano/use-fetch)
 [![Stars](https://flat.badgen.net/github/stars/lusito/react-nano?icon=github)](https://github.com/lusito/react-nano)
 [![Watchers](https://flat.badgen.net/github/watchers/lusito/react-nano?icon=github)](https://github.com/lusito/react-nano)
 
@@ -22,7 +38,7 @@ There are a lot of similar hooks out there, but they either lacked something I n
 
 ## How to Use
 
-Check out the [documentation](https://lusito.github.io/react-nano/use-fetch/)
+Check out the [documentation](docs/setup.md)
 
 ## Report Issues
 

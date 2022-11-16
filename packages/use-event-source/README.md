@@ -1,8 +1,23 @@
+---
+title: 'use-event-source'
+description: A lightweight EventSource (server-sent-events) hook for react, written in TypeScript.
+keywords:
+  - react
+  - hooks
+  - event-source
+  - server-sent-events
+  - sse
+sidebar:
+  - 'setup'
+  - 'usage'
+  - 'redux'
+---
+
 # @react-nano/use-event-source
 
 [![License](https://flat.badgen.net/github/license/lusito/react-nano?icon=github)](https://github.com/Lusito/react-nano/blob/master/LICENSE)
 [![Minified + gzipped size](https://flat.badgen.net/bundlephobia/minzip/@react-nano/use-event-source?icon=dockbit)](https://bundlephobia.com/result?p=@react-nano/use-event-source)
-[![NPM version](https://flat.badgen.net/npm/v/@react-nano/@react-nano/use-event-source?icon=npm)](https://www.npmjs.com/package/@react-nano/use-event-source)
+[![NPM version](https://flat.badgen.net/npm/v/@react-nano/use-event-source?icon=npm)](https://www.npmjs.com/package/@react-nano/use-event-source)
 [![Stars](https://flat.badgen.net/github/stars/lusito/react-nano?icon=github)](https://github.com/lusito/react-nano)
 [![Watchers](https://flat.badgen.net/github/watchers/lusito/react-nano?icon=github)](https://github.com/lusito/react-nano)
 

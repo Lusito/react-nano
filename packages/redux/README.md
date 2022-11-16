@@ -1,8 +1,22 @@
+---
+title: redux
+description: A simple, lightweight react-redux alternative, written in TypeScript.
+keywords:
+  - react
+  - redux
+  - hooks
+sidebar:
+  - 'setup'
+  - 'provider'
+  - 'hooks'
+  - 'migrating-from-react-redux'
+---
+
 # @react-nano/redux
 
 [![License](https://flat.badgen.net/github/license/lusito/react-nano?icon=github)](https://github.com/Lusito/react-nano/blob/master/LICENSE)
 [![Minified + gzipped size](https://flat.badgen.net/bundlephobia/minzip/@react-nano/redux?icon=dockbit)](https://bundlephobia.com/result?p=@react-nano/redux)
-[![NPM version](https://flat.badgen.net/npm/v/@react-nano/@react-nano/redux?icon=npm)](https://www.npmjs.com/package/@react-nano/redux)
+[![NPM version](https://flat.badgen.net/npm/v/@react-nano/redux?icon=npm)](https://www.npmjs.com/package/@react-nano/redux)
 [![Stars](https://flat.badgen.net/github/stars/lusito/react-nano?icon=github)](https://github.com/lusito/react-nano)
 [![Watchers](https://flat.badgen.net/github/watchers/lusito/react-nano?icon=github)](https://github.com/lusito/react-nano)
 
@@ -20,7 +34,7 @@ A simple, lightweight react-redux alternative, written in TypeScript.
 
 ## How to Use
 
-Check out the [documentation](https://lusito.github.io/react-nano/redux/)
+Check out the [documentation](docs/setup.md)
 
 ## Report Issues
 

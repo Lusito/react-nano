@@ -1,8 +1,23 @@
+---
+title: router
+description: A simple, lightweight react router using hooks, written in TypeScript.
+keywords:
+  - react
+  - router
+  - hooks
+sidebar:
+  - 'setup'
+  - 'router'
+  - 'routes'
+  - 'links'
+  - 'hooks'
+---
+
 # @react-nano/router
 
 [![License](https://flat.badgen.net/github/license/lusito/react-nano?icon=github)](https://github.com/Lusito/react-nano/blob/master/LICENSE)
 [![Minified + gzipped size](https://flat.badgen.net/bundlephobia/minzip/@react-nano/router?icon=dockbit)](https://bundlephobia.com/result?p=@react-nano/router)
-[![NPM version](https://flat.badgen.net/npm/v/@react-nano/@react-nano/router?icon=npm)](https://www.npmjs.com/package/@react-nano/router)
+[![NPM version](https://flat.badgen.net/npm/v/@react-nano/router?icon=npm)](https://www.npmjs.com/package/@react-nano/router)
 [![Stars](https://flat.badgen.net/github/stars/lusito/react-nano?icon=github)](https://github.com/lusito/react-nano)
 [![Watchers](https://flat.badgen.net/github/watchers/lusito/react-nano?icon=github)](https://github.com/lusito/react-nano)
 
@@ -12,15 +27,35 @@ A simple, lightweight react router using hooks, written in TypeScript.
 
 - Very lightweight (see the badges above for the latest size).
 - Flexible and dead simple to use.
+- Uses the browsers history API (no bulky polyfill).
 - Does not force a matching algorithm on you. It's up to you!
   - Comes with a simple (one-liner) matching algorithm built-in for simple use-cases.
 - Written with [hooks](https://reactjs.org/docs/hooks-intro.html) in TypeScript
 - Only has one peer dependency: React 16.12.0 or higher.
 - Liberal license: [zlib/libpng](https://github.com/Lusito/react-nano/blob/master/LICENSE)
 
+
+## Example
+
+A small example might look like this:
+
+```tsx
+import { Router } from "@react-nano/router";
+export const App = () => (
+    <Router>
+        <Switch>
+            <Route path="/news" component={News} />
+            <Route path="/fakenews" component={FakeNews} />
+            {/* use "(.*)"  instead of "*" if you use path-to-regexp */}
+            <Route path="*" component={Otherwise} />
+        </Switch>
+    </Router>
+);
+```
+
 ## How to Use
 
-Check out the [documentation](https://lusito.github.io/react-nano/router/)
+Check out the [documentation](docs/setup.md)
 
 ## Report Issues
 

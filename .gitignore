@@ -1,4 +1,5 @@
 dist/
+docs-dist/
 .vscode
 node_modules/
 coverage/

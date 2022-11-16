@@ -1,22 +1,46 @@
+---
+siteName: '@react-nano'
+title: ''
+description: Tiny, powerful and type-safe React libraries
+siteUrl: 'https://lusito.github.io/react-nano'
+footer:
+  - Zlib/Libpng License | https://github.com/Lusito/react-nano/blob/master/LICENSE
+  - Copyright © 2022 Santo Pfingsten
+keywords:
+  - react
+links:
+  - Github | https://github.com/lusito/react-nano
+adjustPaths:
+  - ^\/packages\/([^/]+)(\/docs)?/([^/]+\.html)$|/$1/$3
+  - ^\/packages\/([^/]+)(\/docs)?/([^/]+/)?$|/$1/$3
+projects:
+  - packages/redux
+  - packages/redux-dynamic-modules
+  - packages/router
+  - packages/tsrux
+  - packages/use-event-source
+  - packages/use-graphql
+---
+
 # @react-nano
 
 Tiny, powerful and type-safe React libraries. All released under a liberal license: [zlib/libpng](https://github.com/Lusito/react-nano/blob/master/LICENSE)
 
 ## Libraries
 
-- [@react-nano/redux](https://lusito.github.io/react-nano/redux/)\
+- [@react-nano/redux](packages/redux/README.md)\
 Lightweight alternative to react-redux.
-- [@react-nano/redux-dynamic-modules](https://lusito.github.io/react-nano/redux-dynamic-modules/)\
+- [@react-nano/redux-dynamic-modules](packages/redux-dynamic-modules/README.md)\
 Making redux-dynamic-modules more lightweight by using @react-nano/redux instead of react-redux.
-- [@react-nano/router](https://lusito.github.io/react-nano/router/)\
+- [@react-nano/router](packages/router/README.md)\
 Lightweight alternative to react-router.
-- [@react-nano/tsrux](https://lusito.github.io/react-nano/tsrux/)\
+- [@react-nano/tsrux](packages/tsrux/README.md)\
 Lightweight alternative to redux-actions, deox, etc.
-- [@react-nano/use-event-source](https://lusito.github.io/react-nano/use-event-source/)\
-Hook for using [Server-Sent-Events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events).
-- [@react-nano/use-fetch](https://lusito.github.io/react-nano/use-fetch/)\
+- [@react-nano/use-event-source](packages/use-event-source/README.md)\
+Hook for using [Server-Sent-Events](https://developer.mozilla.org/en-US/packages/Web/API/Server-sent_events).
+- [@react-nano/use-fetch](packages/use-fetch/README.md)\
 Hook for using `fetch()` to GET, POST, etc. requests.
-- [@react-nano/use-graphql](https://lusito.github.io/react-nano/use-graphql/)\
+- [@react-nano/use-graphql](packages/use-graphql/README.md)\
 Hook for using GraphQL queries and mutations.
 
 ## Report Issues

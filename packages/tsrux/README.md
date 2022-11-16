@@ -1,8 +1,21 @@
+---
+title: 'tsrux'
+description: Typesafe and painless action creators and reducers for redux.
+keywords:
+  - redux
+sidebar:
+  - 'setup'
+  - 'action-creators'
+  - 'reducers'
+  - 'types'
+  - 'further-examples'
+---
+
 # @react-nano/tsrux
 
 [![License](https://flat.badgen.net/github/license/lusito/react-nano?icon=github)](https://github.com/Lusito/react-nano/blob/master/LICENSE)
 [![Minified + gzipped size](https://flat.badgen.net/bundlephobia/minzip/@react-nano/tsrux?icon=dockbit)](https://bundlephobia.com/result?p=@react-nano/tsrux)
-[![NPM version](https://flat.badgen.net/npm/v/@react-nano/@react-nano/tsrux?icon=npm)](https://www.npmjs.com/package/@react-nano/tsrux)
+[![NPM version](https://flat.badgen.net/npm/v/@react-nano/tsrux?icon=npm)](https://www.npmjs.com/package/@react-nano/tsrux)
 [![Stars](https://flat.badgen.net/github/stars/lusito/react-nano?icon=github)](https://github.com/lusito/react-nano)
 [![Watchers](https://flat.badgen.net/github/watchers/lusito/react-nano?icon=github)](https://github.com/lusito/react-nano)
 
@@ -15,13 +28,46 @@ The name stands for type-safe [redux](https://redux.js.org/), aside from the blo
 - Extremely lightweight: 300 byte vs 7.7 kilobyte for [deox](https://bundlephobia.com/result?p=deox).
 - Deadsimple to use
 - No dependencies!
-- [Fully documented](https://lusito.github.io/react-nano/tsrux)
+- [Fully documented](docs/setup.md)
 - Automated unit- and type tests
 - Liberal license: [zlib/libpng](https://github.com/Lusito/react-nano/blob/master/LICENSE)
 
+## Example: Actions Creators
+
+```typescript
+// No payload:
+export const fetchTodos = actionCreator("TODOS/FETCH");
+// With payload:
+export const addTodo = actionCreator("TODOS/ADD", (label: string) => ({ label }));
+// With payload and metadata:
+export const removeTodo = actionCreator(
+    "TODOS/REMOVE",
+    (id: number) => ({ id }),
+    (id: number) => ({ metaId: id, foo: "bar" }),
+);
+
+```
+
+[find out more](docs/action-creators.md)
+
+## Example: Reducers
+
+```typescript
+export const todosReducer = mapReducers(initialState, (handle) => [
+    handle(addTodo, (state, action) => ({
+        ...state,
+        list: [...state.list, { id: state.nextId, label: action.payload.label, checked: false }],
+        nextId: state.nextId + 1,
+    })),
+    ...
+]);
+```
+
+[find out more](docs/reducers.md)
+
 ## How to Use
 
-Check out the [documentation](https://lusito.github.io/react-nano/tsrux/)
+Check out the [documentation](docs/setup.md)
 
 ## Similar Projects
 This package is heavily inspired by [deox](https://github.com/thebrodmann/deox), but uses a more lightweight approach.

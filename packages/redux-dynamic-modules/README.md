@@ -1,8 +1,19 @@
+---
+title: redux-dynamic-modules
+description: Making redux-dynamic-modules more lightweight by using @react-nano/redux instead of react-redux.
+keywords:
+  - react
+  - redux
+  - redux-dynamic-modules
+sidebar:
+  - 'setup'
+---
+
 # @react-nano/redux-dynamic-modules
 
 [![License](https://flat.badgen.net/github/license/lusito/react-nano?icon=github)](https://github.com/Lusito/react-nano/blob/master/LICENSE)
 [![Minified + gzipped size](https://flat.badgen.net/bundlephobia/minzip/@react-nano/redux-dynamic-modules?icon=dockbit)](https://bundlephobia.com/result?p=@react-nano/redux-dynamic-modules)
-[![NPM version](https://flat.badgen.net/npm/v/@react-nano/@react-nano/redux-dynamic-modules?icon=npm)](https://www.npmjs.com/package/@react-nano/redux-dynamic-modules)
+[![NPM version](https://flat.badgen.net/npm/v/@react-nano/redux-dynamic-modules?icon=npm)](https://www.npmjs.com/package/@react-nano/redux-dynamic-modules)
 [![Stars](https://flat.badgen.net/github/stars/lusito/react-nano?icon=github)](https://github.com/lusito/react-nano)
 [![Watchers](https://flat.badgen.net/github/watchers/lusito/react-nano?icon=github)](https://github.com/lusito/react-nano)
 
@@ -12,8 +23,9 @@ Written in TypeScript.
 ## Why Use @react-nano/redux-dynamic-modules?
 
 - Very lightweight (see the badges above for the latest size).
+- It still uses redux-dynamic-modules(-core) under the hood (as a peer dependency), so you'll stay up to date with the latest features and bugfixes!
 - All it does is supply a different `DynamicModuleLoader` component which leverages the power of hooks in combination with `@react-nano/redux`.
-- You can use `redux-dynamic-modules-core` for the rest instead of `redux-dynamic-modules`.
+- All other imports can be taken from `redux-dynamic-modules-core` instead of `redux-dynamic-modules`.
 - Only has four peer dependencies:
   - React 16.8.0 or higher
   - Redux 4.0.0 or higher
@@ -25,7 +37,7 @@ Note: Since this library uses `@react-nano/redux`, your code also needs to be us
 
 ## How to Use
 
-Check out the [documentation](https://lusito.github.io/react-nano/redux-dynamic-modules/)
+Check out the [documentation](docs/setup.md)
 
 ## Report Issues
 
