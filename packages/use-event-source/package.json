@@ -27,8 +27,7 @@
     "dist/"
   ],
   "scripts": {
-    "build": "rimraf dist && tsc",
-    "test": "echo no tests yet"
+    "build": "rimraf dist && tsc"
   },
   "devDependencies": {
     "@types/react": "^18.0.9",

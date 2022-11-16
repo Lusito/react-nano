@@ -14,8 +14,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "rimraf dist && tsc",
-    "test": "echo no tests yet"
+    "build": "rimraf dist && tsc"
   },
   "devDependencies": {
     "@react-nano/redux": "^0.12.0",

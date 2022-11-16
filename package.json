@@ -17,7 +17,7 @@
     "lint": "mono-lint",
     "lint:fix": "mono-lint --fix",
     "release": "mono-release",
-    "test": "npm test --workspaces"
+    "test": "npm test --workspaces --if-present"
   },
   "devDependencies": {
     "@lusito/eslint-config-react": "^2.0.3",
