@@ -1,6 +1,7 @@
 export type JsonPrimitive = null | string | number | boolean;
 export type ResultType = JsonPrimitive | Record<string, any>;
 export type VariableType = null | Record<string, any>;
+export type ErrorType = Record<string, any>;
 
 export interface GraphQLResponseInfo {
     /** The status code of the response */

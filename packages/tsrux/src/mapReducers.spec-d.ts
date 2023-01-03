@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { expectType, expectAssignable } from "tsd";
 
 import { Reducer, ReducerMap, ReducerMapActions, ReducerMapHandler, mapReducers } from "./mapReducers";

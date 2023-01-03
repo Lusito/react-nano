@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 import { expectType } from "tsd";
 
 import { GraphGLVariableTypes } from "../dist";

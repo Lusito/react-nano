@@ -20,13 +20,12 @@
     "test": "npm test --workspaces --if-present"
   },
   "devDependencies": {
-    "@lusito/eslint-config-react": "^2.0.3",
-    "@lusito/mono": "^0.8.2",
-    "@lusito/mono-docs": "^0.9.0",
-    "@lusito/prettier-config": "^2.0.0",
-    "eslint-plugin-jest": "^26.3.0",
+    "@lusito/eslint-config-react": "^2.3.0",
+    "@lusito/mono": "^0.9.0",
+    "@lusito/mono-docs": "^0.10.0",
+    "@lusito/prettier-config": "^2.3.0",
+    "eslint-plugin-jest": "^27.2.0",
     "nodemon": "^2.0.20",
-    "prettier": "^2.6.2",
-    "sort-package-json": "^1.57.0"
+    "sort-package-json": "^2.1.0"
   }
 }

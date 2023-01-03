@@ -1,5 +1,5 @@
 import { defaultGraphQLConfig, GraphQLConfig } from "./config";
-import { GraphQLRequestInit, GraphQLResponseInfo } from "./types";
+import { ErrorType, GraphQLRequestInit, GraphQLResponseInfo } from "./types";
 
 export interface GraphQLStateBase {
     /** Request is currently in progress */
@@ -27,7 +27,7 @@ export interface GraphQLStateDoneSuccess<TData> extends GraphQLStateDone {
     data: TData;
 }
 
-export interface GraphQLStateDoneError<TError extends Record<string, any>> extends GraphQLStateDone {
+export interface GraphQLStateDoneError<TError extends ErrorType> extends GraphQLStateDone {
     failed: true;
     success: false;
     /** Errors is present */
@@ -45,7 +45,7 @@ export interface GraphQLStateDoneException extends GraphQLStateBase {
     error: Error;
 }
 
-export type GraphQLState<TData, TError extends Record<string, any>> =
+export type GraphQLState<TData, TError extends ErrorType> =
     | GraphQLStateEmpty
     | GraphQLStateDoneSuccess<TData>
     | GraphQLStateDoneError<TError>
@@ -59,7 +59,7 @@ interface GraphQLActionSuccess<TData> extends GraphQLResponseInfo {
     type: "success";
     data: TData;
 }
-interface GraphQLActionError<TError extends Record<string, any>> extends GraphQLResponseInfo {
+interface GraphQLActionError<TError extends ErrorType> extends GraphQLResponseInfo {
     type: "error";
     errors: TError[];
 }
@@ -68,13 +68,13 @@ interface GraphQLActionException {
     error: Error;
 }
 
-type GraphQLAction<TData, TError extends Record<string, any>> =
+type GraphQLAction<TData, TError extends ErrorType> =
     | GraphQLActionLoading
     | GraphQLActionSuccess<TData>
     | GraphQLActionError<TError>
     | GraphQLActionException;
 
-export function stateReducer<TData, TError extends Record<string, any>>(
+export function stateReducer<TData, TError extends ErrorType>(
     state: GraphQLState<TData, TError>,
     action: GraphQLAction<TData, TError>
 ): GraphQLState<TData, TError> {
@@ -116,7 +116,7 @@ export function stateReducer<TData, TError extends Record<string, any>>(
     return state;
 }
 
-export class GraphQLStateManager<TResultData, TError> {
+export class GraphQLStateManager<TResultData, TError extends ErrorType> {
     public globalConfig?: GraphQLConfig<TResultData, TError, unknown>;
 
     public config?: GraphQLConfig<TResultData, TError, unknown>;

@@ -2,7 +2,7 @@ import { useContext, useLayoutEffect, useMemo, useReducer } from "react";
 
 import { GraphQLConfig, GraphQLGlobalConfigContext, GraphQLLocalConfig } from "./config";
 import { GraphQLState, GraphQLStateManager, stateReducer } from "./state";
-import { JsonPrimitive, ResultType, VariableType } from "./types";
+import { ErrorType, JsonPrimitive, ResultType, VariableType } from "./types";
 
 /* eslint-disable @typescript-eslint/ban-types */
 function toVariableDef(variableTypes?: Record<string, string>) {
@@ -45,7 +45,9 @@ export type ChoicesDeep2<T> = [T] extends [JsonPrimitive]
     ? Partial<boolean>
     : T extends Array<infer T2>
     ? ChoicesDeep2<T2>
-    : ChoicesDeep<T>;
+    : T extends Record<string, any>
+    ? ChoicesDeep<T>
+    : never;
 
 export type ChoicesDeep<T extends Record<string, any>> = {
     [KeyType in keyof T]?: ChoicesDeep2<T[KeyType]>;
@@ -56,7 +58,11 @@ export type TypeForChoice<T, TOpt> = [T] extends [JsonPrimitive]
     ? T
     : T extends Array<infer T2>
     ? Array<TypeForChoice<T2, TOpt>>
-    : ChoicesToResult<T, TOpt>;
+    : T extends Record<string, any>
+    ? TOpt extends ChoicesDeep<T>
+        ? ChoicesToResult<T, TOpt>
+        : never
+    : never;
 export type ChoicesToResult<T extends Record<string, any>, TOpt extends ChoicesDeep<T>> = {
     [P in keyof T as KeepField<TOpt[P]> extends 1 ? P : never]: TypeForChoice<T[P], TOpt[P]>;
 };
@@ -66,7 +72,9 @@ export type GraphQLResultOf<T> = T extends GraphQLHook<infer TResultData, any, a
 export type FieldChoicesFor<T extends ResultType> = [T] extends [JsonPrimitive]
     ? never
     : T extends Array<infer T2>
-    ? FieldChoicesFor<T2>
+    ? T2 extends ResultType
+        ? FieldChoicesFor<T2>
+        : never
     : T extends Record<string, any>
     ? ChoicesDeep<T>
     : never;
@@ -74,12 +82,16 @@ export type FieldChoicesFor<T extends ResultType> = [T] extends [JsonPrimitive]
 export type ReducedResult<T extends ResultType, TFieldChoices> = [T] extends [JsonPrimitive]
     ? T
     : T extends Array<infer T2>
-    ? Array<ReducedResult<T2, TFieldChoices>>
+    ? T2 extends ResultType
+        ? Array<ReducedResult<T2, TFieldChoices>>
+        : never
     : T extends Record<string, any>
-    ? ChoicesToResult<T, TFieldChoices>
+    ? TFieldChoices extends ChoicesDeep<T>
+        ? ChoicesToResult<T, TFieldChoices>
+        : never
     : never;
 
-export type GraphQLHook<TResultData, TError, TVars extends VariableType> = (
+export type GraphQLHook<TResultData, TError extends ErrorType, TVars extends VariableType> = (
     config?: GraphQLLocalConfig<TResultData, TError, TVars>
 ) => [GraphQLState<TResultData, TError>, TVars extends null ? () => void : (vars: TVars) => void, () => void];
 
@@ -122,15 +134,15 @@ function buildHook(
     };
 }
 
-export type CreateHook<TFullResult extends ResultType, TError, TVars extends VariableType> = [TFullResult] extends [
-    JsonPrimitive | JsonPrimitive[]
-]
+export type CreateHook<TFullResult extends ResultType, TError extends ErrorType, TVars extends VariableType> = [
+    TFullResult
+] extends [JsonPrimitive | JsonPrimitive[]]
     ? () => GraphQLHook<ReducedResult<TFullResult, null>, TError, TVars>
     : <TFieldChoices extends FieldChoicesFor<TFullResult>>(
           fields: TFieldChoices
       ) => GraphQLHook<ReducedResult<TFullResult, TFieldChoices>, TError, TVars>;
 
-export type HookBuilder<TFullResult extends ResultType, TError> = {
+export type HookBuilder<TFullResult extends ResultType, TError extends ErrorType> = {
     createHook: CreateHook<TFullResult, TError, null>;
     with: <TVars extends Record<string, any>>(
         variableTypes: GraphGLVariableTypes<TVars>
@@ -139,7 +151,10 @@ export type HookBuilder<TFullResult extends ResultType, TError> = {
     };
 };
 
-function hookBuilder<TFullResult extends ResultType, TError>(type: "query" | "mutation", name: string) {
+function hookBuilder<TFullResult extends ResultType, TError extends ErrorType>(
+    type: "query" | "mutation",
+    name: string
+) {
     return {
         createHook: (fields) => buildHook(type, name, fields),
         with: (variableTypes: { [s: string]: string }) => ({
@@ -148,7 +163,9 @@ function hookBuilder<TFullResult extends ResultType, TError>(type: "query" | "mu
     } as HookBuilder<TFullResult, TError>;
 }
 
-export type GraphQLBuilder = <TFullResult extends ResultType, TError>(name: string) => HookBuilder<TFullResult, TError>;
+export type GraphQLBuilder = <TFullResult extends ResultType, TError extends ErrorType>(
+    name: string
+) => HookBuilder<TFullResult, TError>;
 
 export type GraphQL = {
     query: GraphQLBuilder;
