@@ -1,14 +1,3 @@
----
-title: redux-dynamic-modules
-description: Making redux-dynamic-modules more lightweight by using @react-nano/redux instead of react-redux.
-keywords:
-  - react
-  - redux
-  - redux-dynamic-modules
-sidebar:
-  - 'setup'
----
-
 # @react-nano/redux-dynamic-modules
 
 [![License](https://flat.badgen.net/github/license/lusito/react-nano?icon=github)](https://github.com/Lusito/react-nano/blob/master/LICENSE)

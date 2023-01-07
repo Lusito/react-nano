@@ -1,17 +1,3 @@
----
-title: redux
-description: A simple, lightweight react-redux alternative, written in TypeScript.
-keywords:
-  - react
-  - redux
-  - hooks
-sidebar:
-  - 'setup'
-  - 'provider'
-  - 'hooks'
-  - 'migrating-from-react-redux'
----
-
 # @react-nano/redux
 
 [![License](https://flat.badgen.net/github/license/lusito/react-nano?icon=github)](https://github.com/Lusito/react-nano/blob/master/LICENSE)

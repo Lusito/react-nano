@@ -1,0 +1,11 @@
+title: 'use-graphql'
+description: A lightweight, type-safe graphql hook builder for react, written in TypeScript.
+keywords:
+  - react
+  - hooks
+  - graphql
+sidebar:
+  - 'setup'
+  - 'builder'
+  - 'hook'
+  - 'config'

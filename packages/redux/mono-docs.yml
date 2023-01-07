@@ -1,0 +1,11 @@
+title: redux
+description: A simple, lightweight react-redux alternative, written in TypeScript.
+keywords:
+  - react
+  - redux
+  - hooks
+sidebar:
+  - 'setup'
+  - 'provider'
+  - 'hooks'
+  - 'migrating-from-react-redux'

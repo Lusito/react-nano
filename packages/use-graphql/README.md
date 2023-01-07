@@ -1,17 +1,3 @@
----
-title: 'use-graphql'
-description: A lightweight, type-safe graphql hook builder for react, written in TypeScript.
-keywords:
-  - react
-  - hooks
-  - graphql
-sidebar:
-  - 'setup'
-  - 'builder'
-  - 'hook'
-  - 'config'
----
-
 # @react-nano/use-graphql
 
 [![License](https://flat.badgen.net/github/license/lusito/react-nano?icon=github)](https://github.com/Lusito/react-nano/blob/master/LICENSE)

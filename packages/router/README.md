@@ -1,18 +1,3 @@
----
-title: router
-description: A simple, lightweight react router using hooks, written in TypeScript.
-keywords:
-  - react
-  - router
-  - hooks
-sidebar:
-  - 'setup'
-  - 'router'
-  - 'routes'
-  - 'links'
-  - 'hooks'
----
-
 # @react-nano/router
 
 [![License](https://flat.badgen.net/github/license/lusito/react-nano?icon=github)](https://github.com/Lusito/react-nano/blob/master/LICENSE)

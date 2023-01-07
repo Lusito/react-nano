@@ -1,0 +1,8 @@
+title: redux-dynamic-modules
+description: Making redux-dynamic-modules more lightweight by using @react-nano/redux instead of react-redux.
+keywords:
+  - react
+  - redux
+  - redux-dynamic-modules
+sidebar:
+  - 'setup'
