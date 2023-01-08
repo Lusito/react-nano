@@ -11,8 +11,8 @@
   ],
   "scripts": {
     "build": "npm run build --workspaces",
-    "docs:build": "npm run docs:build:base -- \"https://lusito.github.io/react-nano\"",
-    "docs:build:base": "rimraf docs-dist && mono-docs . docs-dist",
+    "docs:build": "npm run docs:build:base -- build",
+    "docs:build:base": "rimraf docs-dist && mono-docs .",
     "docs:dev": "nodemon --ignore \"docs-dist\" --ignore node_modules --ignore dist -e ts,tsx,md,scss,png,webp --exec \"npm run docs:build:base -- serve\"",
     "lint": "mono-lint",
     "lint:fix": "mono-lint --fix",
@@ -21,8 +21,8 @@
   },
   "devDependencies": {
     "@lusito/eslint-config-react": "^2.3.0",
-    "@lusito/mono": "^0.10.0",
-    "@lusito/mono-docs": "^0.11.0",
+    "@lusito/mono": "^0.11.0",
+    "@lusito/mono-docs": "^0.13.0",
     "@lusito/prettier-config": "^2.3.0",
     "eslint-plugin-jest": "^27.2.0",
     "nodemon": "^2.0.20",
