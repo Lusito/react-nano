@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, createContext, useContext, useLayoutEffect, useReducer, useRef } from "react";
+import React, { PropsWithChildren, createContext, useContext, useLayoutEffect, useReducer, useRef, FC } from "react";
 import { Store, AnyAction, Action } from "redux";
 
 const reduceNotify = (state: number) => state + 1;
@@ -26,7 +26,7 @@ export type ProviderProps = PropsWithChildren<{
  * The redux store provider
  * @param props store and children
  */
-export const Provider = ({ store, children }: ProviderProps) => (
+export const Provider: FC<ProviderProps> = ({ store, children }) => (
     <ReduxContext.Provider value={store}>{children}</ReduxContext.Provider>
 );
 

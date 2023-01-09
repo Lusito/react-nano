@@ -1,4 +1,4 @@
-import { useEffect, PropsWithChildren, useState } from "react";
+import React, { useEffect, PropsWithChildren, useState, FC } from "react";
 import { IModuleStore, IModuleTuple } from "redux-dynamic-modules-core";
 import { useStore } from "@react-nano/redux";
 
@@ -13,7 +13,7 @@ export interface DynamicModuleLoaderProps {
  * When this component is initialized, the reducer and saga from the module passed as props will be registered with the system
  * On unmount, they will be unregistered
  */
-export const DynamicModuleLoader = ({ modules, children }: PropsWithChildren<DynamicModuleLoaderProps>) => {
+export const DynamicModuleLoader: FC<PropsWithChildren<DynamicModuleLoaderProps>> = ({ modules, children }) => {
     const store = useStore() as IModuleStore<unknown>;
     const [active, setActive] = useState(false);
     useEffect(() => {
@@ -22,5 +22,6 @@ export const DynamicModuleLoader = ({ modules, children }: PropsWithChildren<Dyn
         return () => added.remove();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [store]);
-    return active ? children : null;
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    return active ? <>{children}</> : null;
 };

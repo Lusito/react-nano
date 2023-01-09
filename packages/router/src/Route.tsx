@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { FC, useMemo } from "react";
 
 import { useRouter } from "./hooks";
 
@@ -15,7 +15,7 @@ export interface RouteProps {
     addKey?: boolean | string[];
 }
 
-export function Route(props: RouteProps) {
+export const Route: FC<RouteProps> = (props) => {
     const router = useRouter();
     const params = useMemo(() => router.matchRoute(props.path, router.path), [props.path, router]);
 
@@ -29,5 +29,6 @@ export function Route(props: RouteProps) {
         return <Component params={params} key={key} />;
     }
 
-    return typeof props.children === "function" ? props.children(params) : props.children;
-}
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    return <>{typeof props.children === "function" ? props.children(params) : props.children}</>;
+};

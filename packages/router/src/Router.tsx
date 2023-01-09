@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo, PropsWithChildren, FC } from "react";
 
 import { RouterContext, RouterContextValue } from "./RouterContext";
 import { createHistory, getHashPath } from "./history";
@@ -12,12 +12,12 @@ export interface RouterProps {
     routeMatcherFactory?: RouteMatcherFactory;
 }
 
-export const Router = ({
+export const Router: FC<PropsWithChildren<RouterProps>> = ({
     basename = "",
     mode,
     routeMatcherFactory = simpleRouteMatcherFactory,
     children,
-}: React.PropsWithChildren<RouterProps>) => {
+}) => {
     const hashMode = mode === "hash";
     const [path, setPath] = useState(() => (hashMode ? getHashPath() : getPathWithoutBasename(basename)));
     const history = useMemo(() => createHistory(hashMode, basename, setPath), [setPath, basename, hashMode]);
