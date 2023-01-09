@@ -107,29 +107,27 @@ function buildHook(
     const query = `${type}${varsDef} { ${name}${varsPass} ${fieldsDef} }`;
 
     return (config) => {
+        const autoSubmit = config?.autoSubmit;
         const [state, updateState] = useReducer(stateReducer, {
             failed: false,
             success: false,
             state: "empty",
-            loading: !!config?.autoSubmit,
+            loading: !!autoSubmit,
         });
         const manager = useMemo(() => new GraphQLStateManager(query, name, updateState), []);
         manager.globalConfig = useContext(GraphQLGlobalConfigContext) as GraphQLConfig<any, any, any>;
         manager.config = config;
-        const autoSubmit = config?.autoSubmit;
         useLayoutEffect(() => {
             manager.mounted = true;
-            if (autoSubmit) {
-                if (autoSubmit === true) manager.submit();
-                else manager.submit(autoSubmit as Record<string, any>);
-            }
+            if (autoSubmit === true) manager.submit();
+            else if (autoSubmit) manager.submit(autoSubmit as Record<string, any>);
 
             return () => {
                 manager.mounted = false;
                 manager.abort();
             };
             // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, [manager]);
+        }, []);
         return [state, manager.submit, manager.abort];
     };
 }

@@ -364,29 +364,27 @@ export function createFetchHook<TResultData, TError, TVars extends Record<string
 ): FetchHook<TResultData, TError, TVars>;
 export function createFetchHook<TResultData, TError, TVars extends VariableType>(initializer: any) {
     return (config?: FetchLocalConfig<TResultData, TError, TVars>) => {
+        const autoSubmit = config?.autoSubmit;
         const [state, updateState] = useReducer(stateReducer, {
             failed: false,
             success: false,
             state: "empty",
-            loading: !!config?.autoSubmit,
+            loading: !!autoSubmit,
         });
         const instance = useMemo(() => new FetchInstance(initializer, updateState), []);
         instance.globalConfig = useContext(FetchGlobalConfigContext) as FetchConfig<TResultData, TError, TVars>;
         instance.config = config;
-        const autoSubmit = config?.autoSubmit;
         useLayoutEffect(() => {
             instance.mounted = true;
-            if (autoSubmit) {
-                if (autoSubmit === true) instance.submit(null);
-                else instance.submit(autoSubmit as TVars);
-            }
+            if (autoSubmit === true) instance.submit(null);
+            else if (autoSubmit) instance.submit(autoSubmit as TVars);
 
             return () => {
                 instance.mounted = false;
                 instance.abort();
             };
             // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, [instance]);
+        }, []);
         return [state, instance.submit, instance.abort] as any;
     };
 }
