@@ -1,19 +1,7 @@
-import React, { PropsWithChildren, createContext, useContext, useLayoutEffect, useReducer, useRef, FC } from "react";
+// eslint-disable-next-line import/no-unresolved
+import { useSyncExternalStore } from "use-sync-external-store/shim";
+import React, { PropsWithChildren, createContext, useContext, useRef, FC } from "react";
 import { Store, AnyAction, Action } from "redux";
-
-const reduceNotify = (state: number) => state + 1;
-
-/**
- * A hook to trigger a fresh render of the calling react component
- * @returns A function to call when you want to trigger a fresh rendering of the component.
- */
-const useNotify = () => useReducer(reduceNotify, 0)[1];
-/** A hook to create a reference and always set it to the new value. Used to avoid a fresh render on change */
-function useAndSetRef<T>(value: T) {
-    const ref = useRef(value);
-    ref.current = value;
-    return ref;
-}
 
 const ReduxContext = createContext<Store | null>(null);
 /** A provider receives a store and children */
@@ -57,20 +45,17 @@ export function useSelector<TState = any, TAction extends Action = AnyAction, TR
     selector: (state: TState) => TResult,
     compare: (a: TResult, b: TResult) => boolean = compareRef
 ) {
-    const notify = useNotify();
     const store = useStore<TState, TAction>();
-    const value = selector(store.getState());
-    const lastCall = useAndSetRef({ selector, value });
-    useLayoutEffect(() => {
-        const listener = () => {
-            const newValue = lastCall.current.selector(store.getState());
-            if (!compare(newValue, lastCall.current.value)) notify();
-        };
-        const unsubscribe = store.subscribe(listener);
-        return () => unsubscribe();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [store]);
-    return value;
+    const cache = useRef<{ value: TResult }>();
+
+    return useSyncExternalStore(store.subscribe, () => {
+        const value = selector(store.getState());
+        if (!cache.current || !compare(cache.current.value, value)) {
+            cache.current = { value };
+        }
+
+        return cache.current.value;
+    });
 }
 
 /**
