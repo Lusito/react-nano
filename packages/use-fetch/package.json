@@ -1,6 +1,6 @@
 {
   "name": "@react-nano/use-fetch",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "description": "A lightweight fetching hook for react, written in TypeScript",
   "keywords": [
     "TypeScript",
