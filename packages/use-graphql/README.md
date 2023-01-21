@@ -21,63 +21,68 @@ A lightweight, type-safe graphql hook for react, written in TypeScript.
 This is no code-generator. It works purely by using **TypeScript 4.1** features.
 
 - **No Query Strings**\
-Don't write query strings manually. Write TypeScript and get autocompletion for free!
+  Don't write query strings manually. Write TypeScript and get autocompletion for free!
 - **Type-Safe**\
-Instead of getting the full interface as a result type from a query/mutation, you only get those fields you actually selected in your hook definition!
+  Instead of getting the full interface as a result type from a query/mutation, you only get those fields you actually selected in your hook definition!
 - **Easy to Use**\
-Write your types, define queries/mutations, use the hook, display data => done!
+  Write your types, define queries/mutations, use the hook, display data => done!
 
 This is a **Work In Progress**! The API might change before version 1.0 is released.
 
 ## Simple Example
 
 In your component file, define your customized GraphQL hook and use it in the component:
+
 ```tsx
-import React from 'react';
+import React from "react";
 import { graphQL } from "@react-nano/use-graphql";
-import { UserDTO, ErrorDTO, queryUserVariableTypes } from '../types';
+import { UserDTO, ErrorDTO, queryUserVariableTypes } from "../types";
 
 // No need to write the query as string. Write it in TypeScript and get autocompletion for free!
 const useUserQuery = graphQL
-    .query<UserDTO, ErrorDTO>("user")
-    .with(queryUserVariableTypes)
-    .createHook({
+  .query<UserDTO, ErrorDTO>("user")
+  .with(queryUserVariableTypes)
+  .createHook({
     // These properties will be autocompleted based on the first type argument above
     name: true,
     icon: true,
     posts: {
-        id: true,
-        title: true,
-        hits: true,
-    }
-});
+      id: true,
+      title: true,
+      hits: true,
+    },
+  });
 
 export function UserSummary({ id }: UserSummaryProps) {
-    // It is possible to supply the url globally using a provider
-    // autoSubmit results in the request being send instantly. You can trigger it manually as well.
-    const [userState] = useUserQuery({ url: "/graphql", autoSubmit: { id } });
+  // It is possible to supply the url globally using a provider
+  // autoSubmit results in the request being send instantly. You can trigger it manually as well.
+  const [userState] = useUserQuery({ url: "/graphql", autoSubmit: { id } });
 
-    // There is more state information available. This is just kept short for an overview!
-    if (!userState.success) return <div>Loading</div>;
+  // There is more state information available. This is just kept short for an overview!
+  if (!userState.success) return <div>Loading</div>;
 
-    // Unless you checked for userState.state === "success" (or userState.success), userState.data will not exist on the type.
-    const user = userState.data;
-    return (
+  // Unless you checked for userState.state === "success" (or userState.success), userState.data will not exist on the type.
+  const user = userState.data;
+  return (
+    <ul>
+      <li>Name: {user.name}</li>
+      <li>
+        Icon: <img src={user.icon} alt="User Icon" />
+      </li>
+      <li>Age: {user.age /* Error: No property 'age' on user! */}</li>
+      <li>
+        Posts:
         <ul>
-            <li>Name: {user.name}</li>
-            <li>Icon: <img src={user.icon} alt="User Icon" /></li>
-            <li>Age: {user.age /* Error: No property 'age' on user! */}</li>
-            <li>Posts:
-                <ul>
-                    {user.posts.map((post) => (
-                        <li key={post.id}>{post.title} with {post.hits} hits</li>
-                    ))}
-                </ul>
+          {user.posts.map((post) => (
+            <li key={post.id}>
+              {post.title} with {post.hits} hits
             </li>
+          ))}
         </ul>
-    );
+      </li>
+    </ul>
+  );
 }
-
 ```
 
 In the above example, the type of `userState.data` is automatically created by inspecting the attribute choices specified in the fields definition of your hook.

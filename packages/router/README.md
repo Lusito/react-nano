@@ -19,7 +19,6 @@ A simple, lightweight react router using hooks, written in TypeScript.
 - Only has one peer dependency: React 16.12.0 or higher.
 - Liberal license: [zlib/libpng](https://github.com/Lusito/react-nano/blob/master/LICENSE)
 
-
 ## Example
 
 A small example might look like this:
@@ -27,14 +26,14 @@ A small example might look like this:
 ```tsx
 import { Router } from "@react-nano/router";
 export const App = () => (
-    <Router>
-        <Switch>
-            <Route path="/news" component={News} />
-            <Route path="/fakenews" component={FakeNews} />
-            {/* use "(.*)"  instead of "*" if you use path-to-regexp */}
-            <Route path="*" component={Otherwise} />
-        </Switch>
-    </Router>
+  <Router>
+    <Switch>
+      <Route path="/news" component={News} />
+      <Route path="/fakenews" component={FakeNews} />
+      {/* use "(.*)"  instead of "*" if you use path-to-regexp */}
+      <Route path="*" component={Otherwise} />
+    </Switch>
+  </Router>
 );
 ```
 

@@ -28,11 +28,10 @@ export const fetchTodos = actionCreator("TODOS/FETCH");
 export const addTodo = actionCreator("TODOS/ADD", (label: string) => ({ label }));
 // With payload and metadata:
 export const removeTodo = actionCreator(
-    "TODOS/REMOVE",
-    (id: number) => ({ id }),
-    (id: number) => ({ metaId: id, foo: "bar" }),
+  "TODOS/REMOVE",
+  (id: number) => ({ id }),
+  (id: number) => ({ metaId: id, foo: "bar" })
 );
-
 ```
 
 [find out more](docs/action-creators.md)
@@ -57,6 +56,7 @@ export const todosReducer = mapReducers(initialState, (handle) => [
 Check out the [documentation](docs/setup.md)
 
 ## Similar Projects
+
 This package is heavily inspired by [deox](https://github.com/thebrodmann/deox), but uses a more lightweight approach.
 
 Aside from that, there are [redux-actions](https://github.com/redux-utilities/redux-actions) and [typesafe-actions](https://github.com/piotrwitek/typesafe-actions).
