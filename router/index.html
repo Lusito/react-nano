@@ -23,25 +23,25 @@
 <p>A small example might look like this:</p>
 <pre><code class="hljs"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Router</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@react-nano/router&quot;</span>;
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">App</span> = (<span class="hljs-params"></span>) =&gt; (
-    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Router</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">Switch</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/news&quot;</span> <span class="hljs-attr">component</span>=<span class="hljs-string">{News}</span> /&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/fakenews&quot;</span> <span class="hljs-attr">component</span>=<span class="hljs-string">{FakeNews}</span> /&gt;</span>
-            {/* use &quot;(.*)&quot;  instead of &quot;*&quot; if you use path-to-regexp */}
-            <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;*&quot;</span> <span class="hljs-attr">component</span>=<span class="hljs-string">{Otherwise}</span> /&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">Switch</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">Router</span>&gt;</span></span>
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Router</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Switch</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/news&quot;</span> <span class="hljs-attr">component</span>=<span class="hljs-string">{News}</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/fakenews&quot;</span> <span class="hljs-attr">component</span>=<span class="hljs-string">{FakeNews}</span> /&gt;</span>
+      {/* use &quot;(.*)&quot;  instead of &quot;*&quot; if you use path-to-regexp */}
+      <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;*&quot;</span> <span class="hljs-attr">component</span>=<span class="hljs-string">{Otherwise}</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Switch</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">Router</span>&gt;</span></span>
 );
 </code><code-copy-button role="button" code="import { Router } from &quot;@react-nano/router&quot;;
 export const App = () =&gt; (
-    &lt;Router&gt;
-        &lt;Switch&gt;
-            &lt;Route path=&quot;/news&quot; component={News} /&gt;
-            &lt;Route path=&quot;/fakenews&quot; component={FakeNews} /&gt;
-            {/* use &quot;(.*)&quot;  instead of &quot;*&quot; if you use path-to-regexp */}
-            &lt;Route path=&quot;*&quot; component={Otherwise} /&gt;
-        &lt;/Switch&gt;
-    &lt;/Router&gt;
+  &lt;Router&gt;
+    &lt;Switch&gt;
+      &lt;Route path=&quot;/news&quot; component={News} /&gt;
+      &lt;Route path=&quot;/fakenews&quot; component={FakeNews} /&gt;
+      {/* use &quot;(.*)&quot;  instead of &quot;*&quot; if you use path-to-regexp */}
+      &lt;Route path=&quot;*&quot; component={Otherwise} /&gt;
+    &lt;/Switch&gt;
+  &lt;/Router&gt;
 );" title="Copy the code snippet to the clipboard" aria-label="Copy the code snippet to the clipboard" enhancedclass="enhanced-copy-button_37L9iQ"></code-copy-button></pre>
 <h2 id="how-to-use">How to Use</h2>
 <p>Check out the <a href="https://lusito.github.io/react-nano/router/setup.html">documentation</a></p>

@@ -22,20 +22,19 @@
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> addTodo = <span class="hljs-title function_">actionCreator</span>(<span class="hljs-string">&quot;TODOS/ADD&quot;</span>, <span class="hljs-function">(<span class="hljs-params">label: <span class="hljs-built_in">string</span></span>) =&gt;</span> ({ label }));
 <span class="hljs-comment">// With payload and metadata:</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> removeTodo = <span class="hljs-title function_">actionCreator</span>(
-    <span class="hljs-string">&quot;TODOS/REMOVE&quot;</span>,
-    <span class="hljs-function">(<span class="hljs-params">id: <span class="hljs-built_in">number</span></span>) =&gt;</span> ({ id }),
-    <span class="hljs-function">(<span class="hljs-params">id: <span class="hljs-built_in">number</span></span>) =&gt;</span> ({ <span class="hljs-attr">metaId</span>: id, <span class="hljs-attr">foo</span>: <span class="hljs-string">&quot;bar&quot;</span> }),
+  <span class="hljs-string">&quot;TODOS/REMOVE&quot;</span>,
+  <span class="hljs-function">(<span class="hljs-params">id: <span class="hljs-built_in">number</span></span>) =&gt;</span> ({ id }),
+  <span class="hljs-function">(<span class="hljs-params">id: <span class="hljs-built_in">number</span></span>) =&gt;</span> ({ <span class="hljs-attr">metaId</span>: id, <span class="hljs-attr">foo</span>: <span class="hljs-string">&quot;bar&quot;</span> })
 );
-
 </code><code-copy-button role="button" code="// No payload:
 export const fetchTodos = actionCreator(&quot;TODOS/FETCH&quot;);
 // With payload:
 export const addTodo = actionCreator(&quot;TODOS/ADD&quot;, (label: string) =&gt; ({ label }));
 // With payload and metadata:
 export const removeTodo = actionCreator(
-    &quot;TODOS/REMOVE&quot;,
-    (id: number) =&gt; ({ id }),
-    (id: number) =&gt; ({ metaId: id, foo: &quot;bar&quot; }),
+  &quot;TODOS/REMOVE&quot;,
+  (id: number) =&gt; ({ id }),
+  (id: number) =&gt; ({ metaId: id, foo: &quot;bar&quot; })
 );" title="Copy the code snippet to the clipboard" aria-label="Copy the code snippet to the clipboard" enhancedclass="enhanced-copy-button_37L9iQ"></code-copy-button></pre>
 <p><a href="https://lusito.github.io/react-nano/tsrux/action-creators.html">find out more</a></p>
 <h2 id="example-reducers">Example: Reducers</h2>

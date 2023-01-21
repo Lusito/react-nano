@@ -27,94 +27,103 @@ Write your types, define queries/mutations, use the hook, display data =&gt; don
 <p>This is a <strong>Work In Progress</strong>! The API might change before version 1.0 is released.</p>
 <h2 id="simple-example">Simple Example</h2>
 <p>In your component file, define your customized GraphQL hook and use it in the component:</p>
-<pre><code class="hljs"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+<pre><code class="hljs"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
 <span class="hljs-keyword">import</span> { graphQL } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@react-nano/use-graphql&quot;</span>;
-<span class="hljs-keyword">import</span> { <span class="hljs-title class_">UserDTO</span>, <span class="hljs-title class_">ErrorDTO</span>, queryUserVariableTypes } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../types&#x27;</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">UserDTO</span>, <span class="hljs-title class_">ErrorDTO</span>, queryUserVariableTypes } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../types&quot;</span>;
 
 <span class="hljs-comment">// No need to write the query as string. Write it in TypeScript and get autocompletion for free!</span>
 <span class="hljs-keyword">const</span> useUserQuery = graphQL
-    .<span class="hljs-property">query</span>&lt;<span class="hljs-title class_">UserDTO</span>, <span class="hljs-title class_">ErrorDTO</span>&gt;(<span class="hljs-string">&quot;user&quot;</span>)
-    .<span class="hljs-title function_">with</span>(queryUserVariableTypes)
-    .<span class="hljs-title function_">createHook</span>({
+  .<span class="hljs-property">query</span>&lt;<span class="hljs-title class_">UserDTO</span>, <span class="hljs-title class_">ErrorDTO</span>&gt;(<span class="hljs-string">&quot;user&quot;</span>)
+  .<span class="hljs-title function_">with</span>(queryUserVariableTypes)
+  .<span class="hljs-title function_">createHook</span>({
     <span class="hljs-comment">// These properties will be autocompleted based on the first type argument above</span>
     <span class="hljs-attr">name</span>: <span class="hljs-literal">true</span>,
     <span class="hljs-attr">icon</span>: <span class="hljs-literal">true</span>,
     <span class="hljs-attr">posts</span>: {
-        <span class="hljs-attr">id</span>: <span class="hljs-literal">true</span>,
-        <span class="hljs-attr">title</span>: <span class="hljs-literal">true</span>,
-        <span class="hljs-attr">hits</span>: <span class="hljs-literal">true</span>,
-    }
-});
+      <span class="hljs-attr">id</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">title</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">hits</span>: <span class="hljs-literal">true</span>,
+    },
+  });
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">UserSummary</span>(<span class="hljs-params">{ id }: UserSummaryProps</span>) {
-    <span class="hljs-comment">// It is possible to supply the url globally using a provider</span>
-    <span class="hljs-comment">// autoSubmit results in the request being send instantly. You can trigger it manually as well.</span>
-    <span class="hljs-keyword">const</span> [userState] = <span class="hljs-title function_">useUserQuery</span>({ <span class="hljs-attr">url</span>: <span class="hljs-string">&quot;/graphql&quot;</span>, <span class="hljs-attr">autoSubmit</span>: { id } });
+  <span class="hljs-comment">// It is possible to supply the url globally using a provider</span>
+  <span class="hljs-comment">// autoSubmit results in the request being send instantly. You can trigger it manually as well.</span>
+  <span class="hljs-keyword">const</span> [userState] = <span class="hljs-title function_">useUserQuery</span>({ <span class="hljs-attr">url</span>: <span class="hljs-string">&quot;/graphql&quot;</span>, <span class="hljs-attr">autoSubmit</span>: { id } });
 
-    <span class="hljs-comment">// There is more state information available. This is just kept short for an overview!</span>
-    <span class="hljs-keyword">if</span> (!userState.<span class="hljs-property">success</span>) <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Loading<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+  <span class="hljs-comment">// There is more state information available. This is just kept short for an overview!</span>
+  <span class="hljs-keyword">if</span> (!userState.<span class="hljs-property">success</span>) <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Loading<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
 
-    <span class="hljs-comment">// Unless you checked for userState.state === &quot;success&quot; (or userState.success), userState.data will not exist on the type.</span>
-    <span class="hljs-keyword">const</span> user = userState.<span class="hljs-property">data</span>;
-    <span class="hljs-keyword">return</span> (
-        <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Name: {user.name}<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Icon: <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">{user.icon}</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;User Icon&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Age: {user.age /* Error: No property &#x27;age&#x27; on user! */}<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Posts:
-                <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
-                    {user.posts.map((post) =&gt; (
-                        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{post.id}</span>&gt;</span>{post.title} with {post.hits} hits<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-                    ))}
-                <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+  <span class="hljs-comment">// Unless you checked for userState.state === &quot;success&quot; (or userState.success), userState.data will not exist on the type.</span>
+  <span class="hljs-keyword">const</span> user = userState.<span class="hljs-property">data</span>;
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Name: {user.name}<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>
+        Icon: <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">{user.icon}</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;User Icon&quot;</span> /&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Age: {user.age /* Error: No property &#x27;age&#x27; on user! */}<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>
+        Posts:
+        <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+          {user.posts.map((post) =&gt; (
+            <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{post.id}</span>&gt;</span>
+              {post.title} with {post.hits} hits
             <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span>
-    );
+          ))}
+        <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span>
+  );
 }
-
-</code><code-copy-button role="button" code="import React from &#x27;react&#x27;;
+</code><code-copy-button role="button" code="import React from &quot;react&quot;;
 import { graphQL } from &quot;@react-nano/use-graphql&quot;;
-import { UserDTO, ErrorDTO, queryUserVariableTypes } from &#x27;../types&#x27;;
+import { UserDTO, ErrorDTO, queryUserVariableTypes } from &quot;../types&quot;;
 
 // No need to write the query as string. Write it in TypeScript and get autocompletion for free!
 const useUserQuery = graphQL
-    .query&lt;UserDTO, ErrorDTO&gt;(&quot;user&quot;)
-    .with(queryUserVariableTypes)
-    .createHook({
+  .query&lt;UserDTO, ErrorDTO&gt;(&quot;user&quot;)
+  .with(queryUserVariableTypes)
+  .createHook({
     // These properties will be autocompleted based on the first type argument above
     name: true,
     icon: true,
     posts: {
-        id: true,
-        title: true,
-        hits: true,
-    }
-});
+      id: true,
+      title: true,
+      hits: true,
+    },
+  });
 
 export function UserSummary({ id }: UserSummaryProps) {
-    // It is possible to supply the url globally using a provider
-    // autoSubmit results in the request being send instantly. You can trigger it manually as well.
-    const [userState] = useUserQuery({ url: &quot;/graphql&quot;, autoSubmit: { id } });
+  // It is possible to supply the url globally using a provider
+  // autoSubmit results in the request being send instantly. You can trigger it manually as well.
+  const [userState] = useUserQuery({ url: &quot;/graphql&quot;, autoSubmit: { id } });
 
-    // There is more state information available. This is just kept short for an overview!
-    if (!userState.success) return &lt;div&gt;Loading&lt;/div&gt;;
+  // There is more state information available. This is just kept short for an overview!
+  if (!userState.success) return &lt;div&gt;Loading&lt;/div&gt;;
 
-    // Unless you checked for userState.state === &quot;success&quot; (or userState.success), userState.data will not exist on the type.
-    const user = userState.data;
-    return (
+  // Unless you checked for userState.state === &quot;success&quot; (or userState.success), userState.data will not exist on the type.
+  const user = userState.data;
+  return (
+    &lt;ul&gt;
+      &lt;li&gt;Name: {user.name}&lt;/li&gt;
+      &lt;li&gt;
+        Icon: &lt;img src={user.icon} alt=&quot;User Icon&quot; /&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Age: {user.age /* Error: No property &#x27;age&#x27; on user! */}&lt;/li&gt;
+      &lt;li&gt;
+        Posts:
         &lt;ul&gt;
-            &lt;li&gt;Name: {user.name}&lt;/li&gt;
-            &lt;li&gt;Icon: &lt;img src={user.icon} alt=&quot;User Icon&quot; /&gt;&lt;/li&gt;
-            &lt;li&gt;Age: {user.age /* Error: No property &#x27;age&#x27; on user! */}&lt;/li&gt;
-            &lt;li&gt;Posts:
-                &lt;ul&gt;
-                    {user.posts.map((post) =&gt; (
-                        &lt;li key={post.id}&gt;{post.title} with {post.hits} hits&lt;/li&gt;
-                    ))}
-                &lt;/ul&gt;
+          {user.posts.map((post) =&gt; (
+            &lt;li key={post.id}&gt;
+              {post.title} with {post.hits} hits
             &lt;/li&gt;
+          ))}
         &lt;/ul&gt;
-    );
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  );
 }" title="Copy the code snippet to the clipboard" aria-label="Copy the code snippet to the clipboard" enhancedclass="enhanced-copy-button_37L9iQ"></code-copy-button></pre>
 <p>In the above example, the type of <code>userState.data</code> is automatically created by inspecting the attribute choices specified in the fields definition of your hook.</p>
 <p>So, even though <code>UserDTO</code> specifies the properties <code>id</code> and <code>age</code> and <code>PostDTO</code> specifies <code>message</code> and <code>user</code>, they will not end up in the returned data type and will lead to a compile-time error when you try to access them. For all other properties you will get autocompletion and type-safety.</p>
