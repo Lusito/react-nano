@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { EventSourcePolyfill, EventSourceConstructor as EventSourceConstructorPolyfill } from 'event-source-polyfill';
 
 type EventSourceConstructor = { new (url: string, eventSourceInitDict?: EventSourceInit): EventSource };
 
@@ -45,4 +46,12 @@ export function useEventSourceListener(
         return undefined;
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [source, ...dependencies]);
+}
+
+export const createESClassWithHeaders = (headers: { [name: string]: string }): EventSourceConstructorPolyfill => {
+    return class ESClass extends EventSourcePolyfill {
+        constructor(url: string, options?: EventSourceInit) {
+            super(url, { ...options, headers });
+        }
+    };
 }
