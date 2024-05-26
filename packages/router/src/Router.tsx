@@ -30,7 +30,7 @@ export const Router: FC<PropsWithChildren<RouterProps>> = ({
             matchRoute,
             urlTo: history.urlTo,
         }),
-        [basename, path, history, matchRoute]
+        [basename, path, history, matchRoute],
     );
     useEffect(() => {
         window.addEventListener("popstate", history.onChange);

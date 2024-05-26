@@ -30,7 +30,7 @@ export const addTodo = actionCreator("TODOS/ADD", (label: string) => ({ label })
 export const removeTodo = actionCreator(
   "TODOS/REMOVE",
   (id: number) => ({ id }),
-  (id: number) => ({ metaId: id, foo: "bar" })
+  (id: number) => ({ metaId: id, foo: "bar" }),
 );
 ```
 

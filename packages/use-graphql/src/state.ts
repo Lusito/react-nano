@@ -76,7 +76,7 @@ type GraphQLAction<TData, TError extends ErrorType> =
 
 export function stateReducer<TData, TError extends ErrorType>(
     state: GraphQLState<TData, TError>,
-    action: GraphQLAction<TData, TError>
+    action: GraphQLAction<TData, TError>,
 ): GraphQLState<TData, TError> {
     switch (action.type) {
         case "loading":
@@ -134,7 +134,7 @@ export class GraphQLStateManager<TResultData, TError extends ErrorType> {
     public constructor(
         query: string,
         queryName: string,
-        updateState: (action: GraphQLAction<TResultData, TError>) => void
+        updateState: (action: GraphQLAction<TResultData, TError>) => void,
     ) {
         this.query = query;
         this.queryName = queryName;

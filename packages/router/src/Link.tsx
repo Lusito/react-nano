@@ -20,7 +20,7 @@ export function useRouteLink(href: string, onClick?: React.EventHandler<React.Mo
             },
             href: history.urlTo(href),
         }),
-        [href, onClick, history]
+        [href, onClick, history],
     );
 }
 

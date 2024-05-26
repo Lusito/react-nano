@@ -60,7 +60,7 @@ expectAssignable<{
  * Type ReducerMapActions should work correctly
  */
 expectType<Action1 | Action2 | Action3 | Action4 | AnyAction>(
-    placeholder as ReducerMapActions<ReducerMap<State, Action1 | Action2 | Action3 | Action4>>
+    placeholder as ReducerMapActions<ReducerMap<State, Action1 | Action2 | Action3 | Action4>>,
 );
 
 /**
@@ -71,28 +71,28 @@ expectType<ReducerMap<State, Action1>>(
         expectType<State>(state);
         expectType<Action1>(action);
         return state;
-    })
+    }),
 );
 expectType<ReducerMap<State, Action2>>(
     (placeholder as ReducerMapHandler<State>)(actionCreator2, (state, action) => {
         expectType<State>(state);
         expectType<Action2>(action);
         return state;
-    })
+    }),
 );
 expectType<ReducerMap<State, Action3>>(
     (placeholder as ReducerMapHandler<State>)(actionCreator3, (state, action) => {
         expectType<State>(state);
         expectType<Action3>(action);
         return state;
-    })
+    }),
 );
 expectType<ReducerMap<State, Action4>>(
     (placeholder as ReducerMapHandler<State>)(actionCreator4, (state, action) => {
         expectType<State>(state);
         expectType<Action4>(action);
         return state;
-    })
+    }),
 );
 
 /**
@@ -100,7 +100,7 @@ expectType<ReducerMap<State, Action4>>(
  */
 type ExpectedMappedReducerType = (
     state: State | undefined,
-    action: ReducerMapActions<ReducerMap<State, Action1 | Action2 | Action3 | Action4>>
+    action: ReducerMapActions<ReducerMap<State, Action1 | Action2 | Action3 | Action4>>,
 ) => State;
 
 expectType<ExpectedMappedReducerType>(
@@ -125,5 +125,5 @@ expectType<ExpectedMappedReducerType>(
             expectType<Action4>(action);
             return state;
         }),
-    ])
+    ]),
 );

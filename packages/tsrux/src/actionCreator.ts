@@ -10,8 +10,8 @@ export type Action<TType extends string, TPayload = undefined, TMeta = undefined
         ? { type: TType }
         : { type: TType; meta: TMeta }
     : TMeta extends undefined
-    ? { type: TType; payload: TPayload }
-    : { type: TType; payload: TPayload; meta: TMeta };
+      ? { type: TType; payload: TPayload }
+      : { type: TType; payload: TPayload; meta: TMeta };
 
 export type AnyAction = Action<string, any, any>;
 
@@ -24,7 +24,7 @@ export type AnyAction = Action<string, any, any>;
 export type ActionCreator<
     TType extends string,
     TAction extends Action<TType, any, any>,
-    TParams extends any[] = any[]
+    TParams extends any[] = any[],
 > = ((...args: TParams) => TAction) & { type: TType };
 
 export type ActionOf<TActionCreator extends ActionCreator<any, any, any>> = ReturnType<TActionCreator>;
@@ -41,12 +41,12 @@ export function actionCreator<TType extends string>(type: TType): (() => Action<
 export function actionCreator<TType extends string, TParams extends any[], TPayload = undefined, TMeta = undefined>(
     type: TType,
     getPayload?: (...args: TParams) => TPayload,
-    getMeta?: (...args: TParams) => TMeta
+    getMeta?: (...args: TParams) => TMeta,
 ): ((...args: TParams) => Action<TType, TPayload, TMeta>) & { type: TType };
 export function actionCreator<TType extends string, TParams extends any[], TPayload = undefined, TMeta = undefined>(
     type: TType,
     getPayload?: (...args: TParams) => TPayload,
-    getMeta?: (...args: TParams) => TMeta
+    getMeta?: (...args: TParams) => TMeta,
 ): ActionCreator<TType, Action<TType, TPayload, TMeta>, TParams> {
     const creator = (...args: TParams) => {
         const action: { type: TType; payload?: TPayload; meta?: TMeta } = { type };

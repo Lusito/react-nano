@@ -32,7 +32,7 @@ expectType<{ type: "foo/bar/4"; payload: TestPayload; meta: TestMeta }>(placehol
  * Type AnyAction should work correctly
  */
 expectType<Action<string> | Action<string, any> | Action<string, any, any> | Action<string, undefined, any>>(
-    placeholder as AnyAction
+    placeholder as AnyAction,
 );
 expectAssignable<AnyAction>(placeholder as Action1);
 expectAssignable<AnyAction>(placeholder as Action2);
@@ -72,7 +72,7 @@ export const actionCreator3 = actionCreator("foo/bar/3", undefined, (hello: stri
 export const actionCreator4 = actionCreator(
     "foo/bar/4",
     (foo: string, bar: number) => ({ foo, bar }),
-    (hello: string, world: number) => ({ hello, world })
+    (hello: string, world: number) => ({ hello, world }),
 );
 
 /**

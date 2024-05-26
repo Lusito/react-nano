@@ -191,7 +191,7 @@ type FetchAction<TData, TError> =
 
 function stateReducer<TData, TError>(
     state: FetchState<TData, TError>,
-    action: FetchAction<TData, TError>
+    action: FetchAction<TData, TError>,
 ): FetchState<TData, TError> {
     switch (action.type) {
         case "loading":
@@ -250,7 +250,7 @@ class FetchInstance<TResultData, TError, TVars extends VariableType> {
         initializer: TVars extends null
             ? FetchInitializerNoData<TResultData, TError>
             : FetchInitializerWithData<TResultData, TError, any>,
-        updateState: (action: FetchAction<TResultData, TError>) => void
+        updateState: (action: FetchAction<TResultData, TError>) => void,
     ) {
         this.initializer = initializer;
         this.updateState = updateState;
@@ -353,14 +353,14 @@ class FetchInstance<TResultData, TError, TVars extends VariableType> {
 export type FetchSubmit<TVars extends VariableType> = TVars extends null ? () => void : (vars: TVars) => void;
 
 export type FetchHook<TResultData, TError, TVars extends VariableType> = (
-    config?: FetchLocalConfig<TResultData, TError, TVars>
+    config?: FetchLocalConfig<TResultData, TError, TVars>,
 ) => [FetchState<TResultData, TError>, FetchSubmit<TVars>, () => void];
 
 export function createFetchHook<TResultData, TError>(
-    initializer: FetchInitializerNoData<TResultData, TError>
+    initializer: FetchInitializerNoData<TResultData, TError>,
 ): FetchHook<TResultData, TError, null>;
 export function createFetchHook<TResultData, TError, TVars extends Record<string, any>>(
-    initializer: FetchInitializerWithData<TResultData, TError, TVars>
+    initializer: FetchInitializerWithData<TResultData, TError, TVars>,
 ): FetchHook<TResultData, TError, TVars>;
 export function createFetchHook<TResultData, TError, TVars extends VariableType>(initializer: any) {
     return (config?: FetchLocalConfig<TResultData, TError, TVars>) => {

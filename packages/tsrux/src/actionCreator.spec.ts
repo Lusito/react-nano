@@ -55,7 +55,7 @@ describe("actionCreator", () => {
         const myAction = actionCreator(
             ACTION,
             (hello: string, world: number) => ({ hello, world }),
-            (foo: string, bar: number) => ({ foo, bar })
+            (foo: string, bar: number) => ({ foo, bar }),
         );
 
         it("should have the type set correctly", () => {

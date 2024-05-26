@@ -19,9 +19,8 @@ export type ReducerMap<TState, TAction extends AnyAction> = {
 /**
  * Infer actions of a reducer map.. For internal use.
  */
-export type ReducerMapActions<TReducerMap> = TReducerMap extends ReducerMap<any, infer TAction>
-    ? TAction | AnyAction
-    : never;
+export type ReducerMapActions<TReducerMap> =
+    TReducerMap extends ReducerMap<any, infer TAction> ? TAction | AnyAction : never;
 
 /**
  * A callback used to create a reducer for one single action.
@@ -31,7 +30,7 @@ export type ReducerMapActions<TReducerMap> = TReducerMap extends ReducerMap<any,
  */
 export type ReducerMapHandler<TState> = <TAction extends AnyAction>(
     actionCreator: ActionCreator<any, TAction, any[]>,
-    reducer: Reducer<TState, TAction>
+    reducer: Reducer<TState, TAction>,
 ) => ReducerMap<TState, TAction>;
 
 /**
@@ -42,9 +41,9 @@ export type ReducerMapHandler<TState> = <TAction extends AnyAction>(
  */
 export function mapReducers<TState, TReducerMap extends ReducerMap<TState, any>>(
     defaultState: TState | undefined,
-    setup: (handle: ReducerMapHandler<TState>) => TReducerMap[]
+    setup: (handle: ReducerMapHandler<TState>) => TReducerMap[],
 ): (state: TState | undefined, action: ReducerMapActions<TReducerMap>) => TState {
-    const map = Object.assign({}, ...setup((actionCreator, reducer) => ({ [actionCreator.type]: reducer } as any)));
+    const map = Object.assign({}, ...setup((actionCreator, reducer) => ({ [actionCreator.type]: reducer }) as any));
     // eslint-disable-next-line default-param-last, @typescript-eslint/default-param-last
     return (state = defaultState, action) => {
         const reducer = map[action.type];

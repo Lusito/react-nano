@@ -43,7 +43,7 @@ export function compareRef<T>(a: T, b: T) {
  */
 export function useSelector<TState = any, TAction extends Action = AnyAction, TResult = any>(
     selector: (state: TState) => TResult,
-    compare: (a: TResult, b: TResult) => boolean = compareRef
+    compare: (a: TResult, b: TResult) => boolean = compareRef,
 ) {
     const store = useStore<TState, TAction>();
     const cache = useRef<{ value: TResult }>();

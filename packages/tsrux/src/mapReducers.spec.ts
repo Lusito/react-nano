@@ -5,7 +5,7 @@ const actionCreator1 = actionCreator("foo/action1");
 const actionCreator2 = actionCreator(
     "bar/action2",
     (hello: string, world: number) => ({ hello, world }),
-    (foo: string, bar: number) => ({ foo, bar })
+    (foo: string, bar: number) => ({ foo, bar }),
 );
 
 const action1 = actionCreator1();

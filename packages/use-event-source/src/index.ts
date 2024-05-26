@@ -35,7 +35,7 @@ export function useEventSourceListener(
     source: EventSource | null,
     types: string[],
     listener: (e: EventSourceEvent) => void,
-    dependencies: any[] = []
+    dependencies: any[] = [],
 ) {
     useEffect(() => {
         if (source) {
