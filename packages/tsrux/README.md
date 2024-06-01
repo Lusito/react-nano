@@ -15,7 +15,7 @@ The name stands for type-safe [redux](https://redux.js.org/), aside from the blo
 - Extremely lightweight: 300 byte vs 7.7 kilobyte for [deox](https://bundlephobia.com/result?p=deox).
 - Deadsimple to use
 - No dependencies!
-- [Fully documented](docs/setup.md)
+- [Fully documented](https://lusito.github.io/react-nano/tsrux/setup.html)
 - Automated unit- and type tests
 - Liberal license: [zlib/libpng](https://github.com/Lusito/react-nano/blob/master/LICENSE)
 
@@ -34,7 +34,7 @@ export const removeTodo = actionCreator(
 );
 ```
 
-[find out more](docs/action-creators.md)
+[find out more](https://lusito.github.io/react-nano/tsrux/action-creators.html)
 
 ## Example: Reducers
 
@@ -49,11 +49,11 @@ export const todosReducer = mapReducers(initialState, (handle) => [
 ]);
 ```
 
-[find out more](docs/reducers.md)
+[find out more](https://lusito.github.io/react-nano/tsrux/reducers.html)
 
 ## How to Use
 
-Check out the [documentation](docs/setup.md)
+Check out the [documentation](https://lusito.github.io/react-nano/tsrux/setup.html)
 
 ## Similar Projects
 

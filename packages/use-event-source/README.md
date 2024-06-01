@@ -20,7 +20,7 @@ A lightweight EventSource (server-sent-events) hook for react, written in TypeSc
 
 ## How to Use
 
-Check out the [documentation](https://lusito.github.io/react-nano/use-event-source/)
+Check out the [documentation](https://lusito.github.io/react-nano/use-event-source/setup.html)
 
 ## Report Issues
 

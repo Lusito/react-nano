@@ -22,7 +22,7 @@ There are a lot of similar hooks out there, but they either lacked something I n
 
 ## How to Use
 
-Check out the [documentation](docs/setup.md)
+Check out the [documentation](https://lusito.github.io/react-nano/use-fetch/setup.html)
 
 ## Report Issues
 

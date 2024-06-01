@@ -18,6 +18,7 @@ projects:
   - packages/tsrux
   - packages/use-event-source
   - packages/use-graphql
+  - packages/use-fetch
 buildOptions:
   out: docs-dist
   siteUrl: https://lusito.github.io/react-nano

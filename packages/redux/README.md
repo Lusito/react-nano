@@ -20,7 +20,7 @@ A simple, lightweight react-redux alternative, written in TypeScript.
 
 ## How to Use
 
-Check out the [documentation](docs/setup.md)
+Check out the [documentation](https://lusito.github.io/react-nano/redux/setup.html)
 
 ## Report Issues
 

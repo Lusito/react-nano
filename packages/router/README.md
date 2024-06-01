@@ -39,7 +39,7 @@ export const App = () => (
 
 ## How to Use
 
-Check out the [documentation](docs/setup.md)
+Check out the [documentation](https://lusito.github.io/react-nano/router/setup.html)
 
 ## Report Issues
 

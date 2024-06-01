@@ -129,7 +129,7 @@ const queryUserVariableTypes: GraphGLVariableTypes<QueryUserVariables> = {
 
 ## How to Use
 
-Check out the [documentation](https://lusito.github.io/react-nano/use-graphql/)
+Check out the [documentation](https://lusito.github.io/react-nano/use-graphql/setup.html)
 
 ## Report Issues
 
