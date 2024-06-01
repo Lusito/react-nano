@@ -8,18 +8,17 @@ Let's say you have a user object you want to fetch. First you'll create a custom
 import { createFetchHook, prepareGet } from "@react-nano/use-fetch";
 
 export const useGetUser = createFetchHook({
-    prepare: (init: FetchRequestInit, data: { id: number }) => {
-        prepareGet(init);
-        return `api/user${data.id}`
-    },
-    getResult: (response: Response) => response.json() as Promise<UserDTO>,
-    getError: (response: Response) => response.json() as Promise<RestValidationErrorDTO>
+  prepare: (init: FetchRequestInit, data: { id: number }) => {
+    prepareGet(init);
+    return `api/user${data.id}`;
+  },
+  getResult: (response: Response) => response.json() as Promise<UserDTO>,
+  getError: (response: Response) => response.json() as Promise<RestValidationErrorDTO>,
 });
 ```
 
 - `createFetchHook` creates a hook for you. See further below for more details.
 - `prepareGet` is a helper to prepare the init object for a GET request. See further below for more details.
-
 
 ## Using the Custom Fetch Hook
 

@@ -1,5 +1,5 @@
-siteName: '@react-nano'
-title: ''
+siteName: "@react-nano"
+title: ""
 description: Tiny, powerful and type-safe React libraries
 footer:
   - Zlib/Libpng License | https://github.com/Lusito/react-nano/blob/master/LICENSE

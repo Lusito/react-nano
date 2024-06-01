@@ -6,7 +6,7 @@ import { PostDTO, QueryUserVariables } from "./types";
 
 expectType<{
     id: string;
-}>((0 as any) as GraphGLVariableTypes<QueryUserVariables>);
+}>(0 as any as GraphGLVariableTypes<QueryUserVariables>);
 
 // Only top-level attributes need to be specified:
 expectType<{
@@ -15,7 +15,7 @@ expectType<{
     message: string;
     hits: string;
     user: string;
-}>((0 as any) as GraphGLVariableTypes<PostDTO>);
+}>(0 as any as GraphGLVariableTypes<PostDTO>);
 
 /// Missing variables not allowed
 // @ts-expect-error

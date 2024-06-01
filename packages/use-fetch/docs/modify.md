@@ -12,13 +12,13 @@ Again, we'll need to create a custom hook. This time it will take a FormData obj
 import { setupFetch, preparePost } from "@react-nano/use-fetch";
 
 export const useUpdateUser = createFetchHook({
-    prepare: (init: FetchRequestInit, data: { id: number, formData: FormData }) => {
-        prepareFormDataPost(init, data.formData);
-        init.method = "PUT";
-        return `api/user${data.id}`;
-    },
-    getResult: (response: Response) => response.json() as Promise<boolean>,
-    getError: (response: Response) => response.json() as Promise<RestValidationErrorDTO>
+  prepare: (init: FetchRequestInit, data: { id: number; formData: FormData }) => {
+    prepareFormDataPost(init, data.formData);
+    init.method = "PUT";
+    return `api/user${data.id}`;
+  },
+  getResult: (response: Response) => response.json() as Promise<boolean>,
+  getError: (response: Response) => response.json() as Promise<RestValidationErrorDTO>,
 });
 ```
 
@@ -30,34 +30,29 @@ export const useUpdateUser = createFetchHook({
 ## Using the Custom Fetch Hook
 
 Here's how you might use the hook (in addition to `useGetUser` from the previous example):
+
 ```tsx
 function EditUserComponent(props: { id: number }) {
-    const [getUser] = useGetUser({ autoSubmit: { id: props.id } });
-    const [updateUser, submitUpdateUser] = useUpdateUserFetch();
+  const [getUser] = useGetUser({ autoSubmit: { id: props.id } });
+  const [updateUser, submitUpdateUser] = useUpdateUserFetch();
 
-    if (getUser.failed) return <div>Error fetching user</div>;
-    if (!getUser.success) return <div>Loading..</div>;
+  if (getUser.failed) return <div>Error fetching user</div>;
+  if (!getUser.success) return <div>Loading..</div>;
 
-    const user = getUser.data;
-    const validationErrors = getValidationErrors(updateUser);
+  const user = getUser.data;
+  const validationErrors = getValidationErrors(updateUser);
 
-    return (
-        <Form
-            onSubmit={(e) => submitUpdateUser({ id: props.id, formData: new FormData(e.currentTarget) })}
-            loading={updateUser.loading}
-        >
-            <Input
-                name="name"
-                label="Name"
-                placeholder="Name"
-                error={validationErrors.name}
-                defaultValue={user.name}
-            />
-            ...
-            <ErrorMessageForState state={updateUser} />
-            <button type="submit">Save</button>
-        </Form>
-    );
+  return (
+    <Form
+      onSubmit={(e) => submitUpdateUser({ id: props.id, formData: new FormData(e.currentTarget) })}
+      loading={updateUser.loading}
+    >
+      <Input name="name" label="Name" placeholder="Name" error={validationErrors.name} defaultValue={user.name} />
+      ...
+      <ErrorMessageForState state={updateUser} />
+      <button type="submit">Save</button>
+    </Form>
+  );
 }
 ```
 
@@ -74,23 +69,24 @@ There's a lot more going on here:
   - When an error happened, we try to show some information about it. See [API](./api.md) for more information on the state values.
 
 In case you are wondering about the implementations of `ErrorMessageForState` and `getValidationErrors`, here they are:
+
 ```tsx
 interface ErrorMessageForStateProps {
-    state: FetchState<any, RestValidationErrorDTO>;
+  state: FetchState<any, RestValidationErrorDTO>;
 }
 
 export function ErrorMessageForState({ state }: ErrorMessageForStateProps) {
-    switch (state.state) {
-        case "error":
-            return <div>Error {state.error.error}</div>;
-        case "exception":
-            return <div>Error {state.error.message}</div>;
-        default:
-            return null;
-    }
+  switch (state.state) {
+    case "error":
+      return <div>Error {state.error.error}</div>;
+    case "exception":
+      return <div>Error {state.error.message}</div>;
+    default:
+      return null;
+  }
 }
 
 export function getValidationErrors(state: FetchState<any, RestValidationErrorDTO>) {
-    return (state.state === "error" && state.error.validation_errors) || {};
+  return (state.state === "error" && state.error.validation_errors) || {};
 }
 ```

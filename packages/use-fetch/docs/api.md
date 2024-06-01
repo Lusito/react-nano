@@ -1,4 +1,3 @@
-
 # API
 
 ## createFetchHook
@@ -11,7 +10,6 @@
     - the return value should be the URL you want to run this fetch against.
   - `getResult` is a function called to get the result of a response and also to specify the type of the data. Always add a `as Promise<MyType>` at the end to define your type.
   - `getError` is essentially the same, but for the case where `response.ok === false`. I.e. you can have a different type for non-ok responses.
-
 
 ## Your Custom Hooks
 
@@ -26,7 +24,6 @@
   2. A submit function, which you can call to manually (re-)submit the request.
   3. An abort function to cancel the active request (it will be automatically called upon unmount).
 
-
 ## FetchState
 
 The first entry of the array returned by your custom hook is a state object. Depending on its `state` property, it can have more properties:
@@ -34,65 +31,65 @@ The first entry of the array returned by your custom hook is a state object. Dep
 ```tsx
 // These properties are always available
 export interface FetchStateBase {
-    /** Request is currently in progress */
-    loading: boolean;
-    /** Either an exception occurred or the request returned an error */
-    failed: boolean;
-    /** Request was successful */
-    success: boolean;
+  /** Request is currently in progress */
+  loading: boolean;
+  /** Either an exception occurred or the request returned an error */
+  failed: boolean;
+  /** Request was successful */
+  success: boolean;
 }
 
 // These are only available when the request has not finished yet
 export interface FetchStateEmpty extends FetchStateBase {
-    state: "empty";
-    failed: false;
-    success: false;
+  state: "empty";
+  failed: false;
+  success: false;
 }
 
 // These are available in case of success or error
 export interface FetchStateDone extends FetchStateBase {
-    /** The status code of the response */
-    responseStatus: number;
-    /** The headers of the response */
-    responseHeaders: Headers;
+  /** The status code of the response */
+  responseStatus: number;
+  /** The headers of the response */
+  responseHeaders: Headers;
 }
 
 // These are available in case of success
 export interface FetchStateDoneSuccess<TData> extends FetchStateDone {
-    failed: false;
-    success: true;
-    /** Data is present */
-    state: "success";
-    /** The response data in case of success */
-    data: TData;
+  failed: false;
+  success: true;
+  /** Data is present */
+  state: "success";
+  /** The response data in case of success */
+  data: TData;
 }
 
 // These are available in case of an error
 export interface FetchStateDoneError<TError extends Record<string, any>> extends FetchStateDone {
-    failed: true;
-    success: false;
-    /** Errors is present */
-    state: "error";
-    /** The server result data. */
-    error: TError;
+  failed: true;
+  success: false;
+  /** Errors is present */
+  state: "error";
+  /** The server result data. */
+  error: TError;
 }
 
 // These are available in case of an exception
 export interface FetchStateDoneException extends FetchStateBase {
-    failed: true;
-    success: false;
-    /** Errors is present */
-    state: "exception";
-    /** The cause of the exception. */
-    error: Error;
+  failed: true;
+  success: false;
+  /** Errors is present */
+  state: "exception";
+  /** The cause of the exception. */
+  error: Error;
 }
 
 // FetchState can be either of the above:
 export type FetchState<TData, TError extends Record<string, any>> =
-    | FetchStateEmpty
-    | FetchStateDoneSuccess<TData>
-    | FetchStateDoneError<TError>
-    | FetchStateDoneException;
+  | FetchStateEmpty
+  | FetchStateDoneSuccess<TData>
+  | FetchStateDoneError<TError>
+  | FetchStateDoneException;
 ```
 
 As you can see, you will only be able to access `state.data` if you checked for `state.success` or `state.state === "success"` (or if you ruled out the other possibilities first)

@@ -5,7 +5,7 @@ keywords:
   - redux
   - hooks
 sidebar:
-  - 'setup'
-  - 'provider'
-  - 'hooks'
-  - 'migrating-from-react-redux'
+  - "setup"
+  - "provider"
+  - "hooks"
+  - "migrating-from-react-redux"

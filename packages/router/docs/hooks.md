@@ -7,8 +7,8 @@ You can get a memoized parameters object for the given path like this:
 
 ```tsx
 export const Component = () => {
-    const params = useParams<{ id: string }>("/news/:id");
-    //...
+  const params = useParams<{ id: string }>("/news/:id");
+  //...
 };
 ```
 
@@ -27,23 +27,24 @@ export function Component() {
 ```
 
 `RouterContextValue` is defined as:
+
 ```tsx
 export interface RouterContextValue {
-    basename: string;
-    path: string;
-    history: RouterHistory;
-    matchRoute: CachedRouteMatcher;
-    urlTo: (path: string) => string;
+  basename: string;
+  path: string;
+  history: RouterHistory;
+  matchRoute: CachedRouteMatcher;
+  urlTo: (path: string) => string;
 }
 // with:
 export interface RouterHistory {
-    push: (path: string) => void;
-    replace: (path: string) => void;
-    stop: () => void; // for internal use, do not call.
-    urlTo: (path: string) => string;
+  push: (path: string) => void;
+  replace: (path: string) => void;
+  stop: () => void; // for internal use, do not call.
+  urlTo: (path: string) => string;
 }
 // and:
-export type CachedRouteMatcher = (pattern: string, path: string) => (RouteParams | null);
+export type CachedRouteMatcher = (pattern: string, path: string) => RouteParams | null;
 ```
 
 `urlTo()` can be used to create a new url, which respects `basename` and `mode`. It's the same for both `RouterContextValue` and `RouterHistory`.

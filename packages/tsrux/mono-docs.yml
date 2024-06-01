@@ -1,10 +1,10 @@
-title: 'tsrux'
+title: "tsrux"
 description: Typesafe and painless action creators and reducers for redux.
 keywords:
   - redux
 sidebar:
-  - 'setup'
-  - 'action-creators'
-  - 'reducers'
-  - 'types'
-  - 'further-examples'
+  - "setup"
+  - "action-creators"
+  - "reducers"
+  - "types"
+  - "further-examples"

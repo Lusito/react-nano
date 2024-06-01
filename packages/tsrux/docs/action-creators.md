@@ -17,7 +17,6 @@ console.log(fetchTodos());
 
 // Has a static property type="TODOS/FETCH"
 console.log(fetchTodos.type);
-
 ```
 
 ## With Payload, but Without Metadata
@@ -42,7 +41,11 @@ If you specify it, the returned function receives the same arguments as your fac
 ```typescript
 import { actionCreator } from "@react-nano/tsrux";
 
-const removeTodo = actionCreator("TODOS/REMOVE", (id: number) => ({ id }), (id: number) => ({ metaId: id, foo: "bar" }));
+const removeTodo = actionCreator(
+  "TODOS/REMOVE",
+  (id: number) => ({ id }),
+  (id: number) => ({ metaId: id, foo: "bar" }),
+);
 
 // When called returns: { type: "TODOS/REMOVE", payload: { id: 42 }, meta: { metaId: id, foo: "bar" } }
 console.log(removeTodo(42));

@@ -6,6 +6,7 @@ You might be used to a `configureStore` function from libraries like `deox`. @re
 There are already projects out there providing these. Depending on your other libraries you might already have one.
 
 Here are some references:
+
 - [@reduxjs/toolkit](https://www.npmjs.com/package/@reduxjs/toolkit) (formerly known as [redux-starter-kit](https://www.npmjs.com/package/redux-starter-kit))
 - [redux-dynamic-modules](https://www.npmjs.com/package/redux-dynamic-modules), an awesome library if you are planning to modularize your code.
 
@@ -29,9 +30,8 @@ function* todosSaga() {
   yield takeEvery(addTodo.type, addTodoSaga);
 }
 
-
 function* addTodoSaga(action: ActionOf<typeof addTodo>) {
-    //...
+  //...
 }
 ```
 

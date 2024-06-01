@@ -14,9 +14,5 @@ It works just like the original. You only need to adjust the import statement:
 
 ```tsx
 import { DynamicModuleLoader } from "@react-nano/redux-dynamic-modules";
-export const MyComponent = () => (
-    <DynamicModuleLoader modules={[myModule()]}>
-        ....
-    </DynamicModuleLoader>
-);
+export const MyComponent = () => <DynamicModuleLoader modules={[myModule()]}>....</DynamicModuleLoader>;
 ```

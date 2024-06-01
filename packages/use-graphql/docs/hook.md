@@ -45,12 +45,14 @@ export function UserSummary({ id }: UserSummaryProps) {
 ## The State Object
 
 The state object always has these properties:
+
 - `loading: boolean` => Request is currently in progress
 - `failed: boolean;` => Either an exception occurred or the request returned an error
 - `success: boolean;` => Request was successful
 - `type: "empty" | "success" | "error" | "exception"` => The last known state of the request (a new request might be in progress)
 
 Depending on `type`, additional properties might be available:
+
 - `"empty"` => This is the initial state if no request has returned yet
   - `failed` will always be `false`
   - `success` will always be `false`

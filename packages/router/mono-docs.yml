@@ -5,8 +5,8 @@ keywords:
   - router
   - hooks
 sidebar:
-  - 'setup'
-  - 'router'
-  - 'routes'
-  - 'links'
-  - 'hooks'
+  - "setup"
+  - "router"
+  - "routes"
+  - "links"
+  - "hooks"

@@ -5,19 +5,19 @@ Tiny, powerful and type-safe React libraries. All released under a liberal licen
 ## Libraries
 
 - [@react-nano/redux](https://lusito.github.io/react-nano/redux/index.html)\
-Lightweight alternative to react-redux.
+  Lightweight alternative to react-redux.
 - [@react-nano/redux-dynamic-modules](https://lusito.github.io/react-nano/redux-dynamic-modules/index.html)\
-Making redux-dynamic-modules more lightweight by using @react-nano/redux instead of react-redux.
+  Making redux-dynamic-modules more lightweight by using @react-nano/redux instead of react-redux.
 - [@react-nano/router](https://lusito.github.io/react-nano/router/index.html)\
-Lightweight alternative to react-router.
+  Lightweight alternative to react-router.
 - [@react-nano/tsrux](https://lusito.github.io/react-nano/tsrux/index.html)\
-Lightweight alternative to redux-actions, deox, etc.
+  Lightweight alternative to redux-actions, deox, etc.
 - [@react-nano/use-event-source](https://lusito.github.io/react-nano/use-event-source/index.html)\
-Hook for using [Server-Sent-Events](https://developer.mozilla.org/en-US/packages/Web/API/Server-sent_events).
+  Hook for using [Server-Sent-Events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events).
 - [@react-nano/use-fetch](https://lusito.github.io/react-nano/use-fetch/index.html)\
-Hook for using `fetch()` to GET, POST, etc. requests.
+  Hook for using `fetch()` to GET, POST, etc. requests.
 - [@react-nano/use-graphql](https://lusito.github.io/react-nano/use-graphql/index.html)\
-Hook for using GraphQL queries and mutations.
+  Hook for using GraphQL queries and mutations.
 
 ## Report Issues
 

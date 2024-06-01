@@ -9,19 +9,26 @@ After you have it, you can add listeners to it. Here's a simple example:
 import { useEventSource, useEventSourceListener } from "@react-nano/use-event-source";
 
 function MyComponent() {
-    const [messages, addMessages] = useReducer(messageReducer, []);
-    
-    const [eventSource, eventSourceStatus] = useEventSource("api/events", true);
-    useEventSourceListener(eventSource, ['update'], evt => {
-        addMessages(JSON.parse(evt.data));
-    }, [addMessages]);
+  const [messages, addMessages] = useReducer(messageReducer, []);
 
-    return (
-        <div>
-            {eventSourceStatus === "open" ? null : <BusyIndicator />}
-            {messages.map((msg) => <div>{msg.text}</div>)}
-        </div>
-    );
+  const [eventSource, eventSourceStatus] = useEventSource("api/events", true);
+  useEventSourceListener(
+    eventSource,
+    ["update"],
+    (evt) => {
+      addMessages(JSON.parse(evt.data));
+    },
+    [addMessages],
+  );
+
+  return (
+    <div>
+      {eventSourceStatus === "open" ? null : <BusyIndicator />}
+      {messages.map((msg) => (
+        <div>{msg.text}</div>
+      ))}
+    </div>
+  );
 }
 ```
 

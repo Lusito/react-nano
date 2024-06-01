@@ -1,4 +1,4 @@
-title: 'use-event-source'
+title: "use-event-source"
 description: A lightweight EventSource (server-sent-events) hook for react, written in TypeScript.
 keywords:
   - react
@@ -7,6 +7,6 @@ keywords:
   - server-sent-events
   - sse
 sidebar:
-  - 'setup'
-  - 'usage'
-  - 'redux'
+  - "setup"
+  - "usage"
+  - "redux"

@@ -7,26 +7,28 @@ The `graphQL` builder pattern helps you to define a query or mutation [hook](./h
 The first thing you do is define the type (query or mutation) and its name like this:
 
 ### Query
+
 ```typescript
-const useUserQuery = graphQL
-    .query<UserDTO, ErrorDTO>("user")
-    // ... see next steps
+const useUserQuery = graphQL.query<UserDTO, ErrorDTO>("user");
+// ... see next steps
 ```
 
 ### Mutation
+
 ```typescript
-const useUpdateUserMutation = graphQL
-    .mutation<Partial<UserDTO>, ErrorDTO>("updateUser")
-    // ...see next steps
+const useUpdateUserMutation = graphQL.mutation<Partial<UserDTO>, ErrorDTO>("updateUser");
+// ...see next steps
 ```
 
 As you can see, `graphQL.query` and `graphQL.mutation` also require two type arguments to be specified:
+
 - The full type that could be returned by the server if all fields had been selected
 - The error type that would be returned by the server in case of an error (the non-array form).
 
 ## Specifying Variable Types
 
 After that you can optionally specify variable types for this query/mutation:
+
 ```typescript
     // ...see previous step
     .with(queryUserVariableTypes)
@@ -43,6 +45,7 @@ The final step is to create a hook, which can then be used in your components.
 - Otherwise the first (and only) argument is an object with `true` for each attribute and an object for the relations you want to get returned (similarly to a GraphQL query string):
 
 ### Non-primitive return type
+
 ```typescript
     // ...see previous steps
     .createHook({
@@ -58,6 +61,7 @@ The final step is to create a hook, which can then be used in your components.
 ```
 
 ### Primitive return type
+
 ```typescript
     // ...see previous steps
     .createHook();

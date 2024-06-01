@@ -17,6 +17,7 @@ type AddTodoActionCreator = typeof addTodo;
 ```typescript
 type ActionOf<TActionCreator extends ActionCreator<any, any, any>>
 ```
+
 This can be used to determine the `Action` type by inspecting an action-creator:
 
 ```typescript
