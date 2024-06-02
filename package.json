@@ -21,10 +21,10 @@
   },
   "devDependencies": {
     "@lusito/eslint-config-react": "^3.1.1",
-    "@lusito/mono": "^0.15.1",
+    "@lusito/mono": "^0.16.0",
     "@lusito/mono-docs": "^0.16.0",
     "@lusito/prettier-config": "^3.1.0",
-    "@lusito/tsconfig": "^1.0.3",
+    "@lusito/tsconfig": "^1.0.4",
     "eslint-plugin-jest": "^28.5.0",
     "nodemon": "^3.1.2",
     "sort-package-json": "^2.10.0"
