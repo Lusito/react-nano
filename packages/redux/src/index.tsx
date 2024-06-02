@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-unresolved
 import { useSyncExternalStore } from "use-sync-external-store/shim";
-import React, { PropsWithChildren, createContext, useContext, useRef, FC } from "react";
+import { PropsWithChildren, createContext, useContext, useRef, FC } from "react";
 import { Store, AnyAction, Action } from "redux";
 
 const ReduxContext = createContext<Store | null>(null);

@@ -1,13 +1,7 @@
 {
+  "extends": "@lusito/tsconfig/base",
   "compilerOptions": {
-    "moduleResolution": "node",
-    "outDir": "./dist/",
-    "strict": true,
-    "declaration": true,
-    "module": "es2015",
-    "lib": ["es2015"],
-    "allowSyntheticDefaultImports": true,
-    "target": "es6"
+    "outDir": "./dist/"
   },
   "include": ["./src/*.ts"]
 }

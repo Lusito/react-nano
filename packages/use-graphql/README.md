@@ -15,7 +15,7 @@ A lightweight, type-safe graphql hook for react, written in TypeScript.
 - Written in TypeScript
 - Type-safe results (tested with [tsd](https://github.com/SamVerschueren/tsd))
 - Autocompletion while writing query definitions
-- Only has one required peer dependency: React 16.8.0 or higher.
+- Only has one required peer dependency: React 17.0.0 or higher.
 - Liberal license: [zlib/libpng](https://github.com/Lusito/react-nano/blob/master/LICENSE)
 
 This is no code-generator. It works purely by using **TypeScript 4.1** features.

@@ -1,17 +1,7 @@
 {
+  "extends": ["@lusito/tsconfig/base", "@lusito/tsconfig/react"],
   "compilerOptions": {
-    "target": "es2015",
-    "module": "es2015",
-    "declaration": true,
-    "lib": ["es2015", "dom"],
-    "esModuleInterop": true,
-    "jsx": "react",
-    "outDir": "./dist",
-    "strict": true,
-    "noUnusedLocals": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "moduleResolution": "node"
+    "outDir": "./dist"
   },
   "exclude": ["test", "dist"]
 }

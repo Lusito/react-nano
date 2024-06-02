@@ -13,7 +13,7 @@ A lightweight EventSource (server-sent-events) hook for react, written in TypeSc
 - Very lightweight (see the badges above for the latest size).
 - Flexible and dead simple to use.
 - Written in TypeScript
-- Only has one required peer dependency: React 16.8.0 or higher.
+- Only has one required peer dependency: React 17.0.0 or higher.
 - Liberal license: [zlib/libpng](https://github.com/Lusito/react-nano/blob/master/LICENSE)
 
 **Beware**: This is currently work in progress. The API might change.

@@ -1,15 +1,7 @@
 {
+  "extends": ["@lusito/tsconfig/base", "@lusito/tsconfig/react"],
   "compilerOptions": {
-    "moduleResolution": "node",
-    "outDir": "./dist/",
-    "sourceMap": true,
-    "strict": true,
-    "declaration": true,
-    "module": "es2015",
-    "lib": ["es2015", "es2016", "es2017", "dom", "dom.iterable"],
-    "allowSyntheticDefaultImports": true,
-    "target": "es6",
-    "jsx": "react"
+    "outDir": "./dist/"
   },
   "include": ["./src/**/*"]
 }

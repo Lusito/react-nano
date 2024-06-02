@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo, PropsWithChildren, FC } from "react";
+import { useEffect, useState, useMemo, PropsWithChildren, FC } from "react";
 
 import { RouterContext, RouterContextValue } from "./RouterContext";
 import { createHistory, getHashPath, OnNavigateFn } from "./history";

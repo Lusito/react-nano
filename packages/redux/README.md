@@ -13,7 +13,7 @@ A simple, lightweight react-redux alternative, written in TypeScript.
 - Very lightweight (see the badges above for the latest size).
 - All hooks are compatible to react-redux
 - Only has two peer dependencies:
-  - React 16.8.0 or higher
+  - React 17.0.0 or higher
   - Redux 4.0.0 or higher
 - Using hooks to access redux in react is soo much cleaner than using react-redux's `connect` higher order component.
 - Liberal license: [zlib/libpng](https://github.com/Lusito/react-nano/blob/master/LICENSE)

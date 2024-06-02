@@ -16,7 +16,7 @@ Written in TypeScript.
 - All it does is supply a different `DynamicModuleLoader` component which leverages the power of hooks in combination with `@react-nano/redux`.
 - All other imports can be taken from `redux-dynamic-modules-core` instead of `redux-dynamic-modules`.
 - Only has four peer dependencies:
-  - React 16.8.0 or higher
+  - React 17.0.0 or higher
   - Redux 4.0.0 or higher
   - @react-nano/redux in the same version
   - redux-dynamic-modules-core 5.0.0 or higher

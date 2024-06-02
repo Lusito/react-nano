@@ -16,7 +16,7 @@ A simple, lightweight react router using hooks, written in TypeScript.
 - Does not force a matching algorithm on you. It's up to you!
   - Comes with a simple (one-liner) matching algorithm built-in for simple use-cases.
 - Written with [hooks](https://reactjs.org/docs/hooks-intro.html) in TypeScript
-- Only has one peer dependency: React 16.12.0 or higher.
+- Only has one peer dependency: React 17.0.0 or higher.
 - Liberal license: [zlib/libpng](https://github.com/Lusito/react-nano/blob/master/LICENSE)
 
 ## Example
