@@ -1,6 +1,6 @@
 {
   "name": "@react-nano/tsrux",
-  "version": "0.14.0",
+  "version": "0.15.0",
   "description": "tsrux stands for typesafe redux. It reduces boilerplate redux code.",
   "keywords": [
     "TypeScript",
