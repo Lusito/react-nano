@@ -44,7 +44,7 @@ The final step is to create a hook, which can then be used in your components.
 - If your request returns a primitive or an array of primitives like `number`, `string` or `string[]`, you obviously can't select any fields, so createHook takes no arguments.
 - Otherwise the first (and only) argument is an object with `true` for each attribute and an object for the relations you want to get returned (similarly to a GraphQL query string):
 
-### Non-primitive return type
+### Non-Primitive Return Type
 
 ```typescript
     // ...see previous steps
@@ -60,7 +60,7 @@ The final step is to create a hook, which can then be used in your components.
     });
 ```
 
-### Primitive return type
+### Primitive Return Type
 
 ```typescript
     // ...see previous steps

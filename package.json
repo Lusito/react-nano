@@ -20,13 +20,13 @@
     "test": "npm test --workspaces --if-present"
   },
   "devDependencies": {
-    "@lusito/eslint-config-react": "^3.1.1",
-    "@lusito/mono": "^0.16.0",
-    "@lusito/mono-docs": "^0.16.0",
+    "@lusito/eslint-config-react": "^3.1.3",
+    "@lusito/mono": "^0.19.2",
+    "@lusito/mono-docs": "^0.18.4",
     "@lusito/prettier-config": "^3.1.0",
-    "@lusito/tsconfig": "^1.0.4",
+    "@lusito/tsconfig": "^1.0.5",
     "eslint-plugin-jest": "^28.5.0",
-    "nodemon": "^3.1.2",
+    "nodemon": "^3.1.3",
     "sort-package-json": "^2.10.0"
   },
   "volta": {
@@ -36,6 +36,12 @@
     "lintMarkdownLinks": {
       "warnOnlyPatterns": [
         "^https:\\/\\/lusito\\.github\\.io\\/react-nano\\/"
+      ]
+    },
+    "lintMarkdownTitles": {
+      "ignorePatterns": [
+        "@react-nano[/a-z0-9-]*",
+        "react-redux"
       ]
     }
   }

@@ -32,7 +32,7 @@ function MyComponent() {
 }
 ```
 
-## useEventSource
+## `useEventSource`
 
 This describes the entire API of the useEventSource hook:
 
@@ -55,7 +55,7 @@ function useEventSource(
 type EventSourceStatus = "init" | "open" | "closed" | "error";
 ```
 
-## useEventSourceListener
+## `useEventSourceListener`
 
 This describes the entire API of the useEventSourceListener hook:
 

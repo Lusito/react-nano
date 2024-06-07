@@ -1,6 +1,6 @@
 # Hooks
 
-## useParams
+## `useParams`
 
 In some cases you want to extract parameters without being in a `Route` component.
 You can get a memoized parameters object for the given path like this:
@@ -12,7 +12,7 @@ export const Component = () => {
 };
 ```
 
-## useRouter
+## `useRouter`
 
 `Router` internally adds a RouterContext to your application, which you can access using the `useRouter()` hook:
 

@@ -1,4 +1,4 @@
-# Links, etc.
+# Links, Etc.
 
 ## Link
 

@@ -2,7 +2,7 @@
 
 Some convenience types are included for the rare case where you do need to write types.
 
-## Prefer typeof
+## Prefer `typeof`
 
 In a lot of situations you can get the types using typescripts `typeof` keyword.
 
@@ -12,7 +12,7 @@ For example, if you want to get the type of an actionCreator:
 type AddTodoActionCreator = typeof addTodo;
 ```
 
-## ActionOf
+## `ActionOf`
 
 ```typescript
 type ActionOf<TActionCreator extends ActionCreator<any, any, any>>
@@ -24,7 +24,7 @@ This can be used to determine the `Action` type by inspecting an action-creator:
 type AddTodoAction = ActionOf<typeof addTodo>;
 ```
 
-## Action
+## `Action`
 
 Use this type if you need to manually define the type of an action:
 
@@ -32,7 +32,7 @@ Use this type if you need to manually define the type of an action:
 type Action<TType extends string, TPayload = undefined, TMeta = undefined>
 ```
 
-## AnyAction
+## `AnyAction`
 
 ```typescript
 type AnyAction
@@ -40,7 +40,7 @@ type AnyAction
 
 Any action can be assigned to this type.
 
-## ActionCreator
+## `ActionCreator`
 
 ```typescript
 type ActionCreator<

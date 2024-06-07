@@ -1,6 +1,6 @@
 # API
 
-## createFetchHook
+## `createFetchHook`
 
 - `createFetchHook` creates a type-safe hook that you can use to perform the fetch.
 - it takes an object with 3 attributes:
@@ -24,7 +24,7 @@
   2. A submit function, which you can call to manually (re-)submit the request.
   3. An abort function to cancel the active request (it will be automatically called upon unmount).
 
-## FetchState
+## `FetchState`
 
 The first entry of the array returned by your custom hook is a state object. Depending on its `state` property, it can have more properties:
 

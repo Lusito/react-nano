@@ -1,6 +1,6 @@
 # Hooks
 
-## useDispatch
+## `useDispatch`
 
 Use the hook to dispatch actions like this:
 
@@ -13,7 +13,7 @@ export const MyComponent = () => {
 };
 ```
 
-## useSelector
+## `useSelector`
 
 Use the hook to get a state property:
 
@@ -58,7 +58,7 @@ export const MyComponent = () => {
 };
 ```
 
-## useStore
+## `useStore`
 
 In some rare occasions, you might want to access the store object itself:
 
