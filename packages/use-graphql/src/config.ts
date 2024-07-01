@@ -65,7 +65,7 @@ export interface GraphQLConfig<TData, TError extends Record<string, any>, TVars>
 export interface GraphQLLocalConfig<TData, TError extends Record<string, any>, TVars extends VariableType>
     extends GraphQLConfig<TData, TError, TVars> {
     /** Specify to cause the request to be submitted automatically */
-    autoSubmit?: TVars extends null ? true : TVars;
+    autoSubmit?: TVars extends null ? boolean : TVars;
 }
 
 export const defaultGraphQLConfig = { url: "/graphql" };
