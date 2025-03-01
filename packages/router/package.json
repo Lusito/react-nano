@@ -1,6 +1,6 @@
 {
   "name": "@react-nano/router",
-  "version": "0.15.0",
+  "version": "0.16.0",
   "description": "A lightweight react router using hooks, written in TypeScript",
   "keywords": [
     "TypeScript",
