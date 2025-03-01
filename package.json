@@ -20,17 +20,17 @@
     "test": "npm test --workspaces --if-present"
   },
   "devDependencies": {
-    "@lusito/eslint-config-react": "^3.1.3",
-    "@lusito/mono": "^0.19.2",
-    "@lusito/mono-docs": "^0.18.4",
-    "@lusito/prettier-config": "^3.1.0",
+    "@lusito/eslint-config-react": "^4.0.0",
+    "@lusito/mono": "^0.20.0",
+    "@lusito/mono-docs": "^0.21.0",
+    "@lusito/prettier-config": "^3.2.0",
     "@lusito/tsconfig": "^1.0.5",
-    "eslint-plugin-jest": "^28.5.0",
-    "nodemon": "^3.1.3",
-    "sort-package-json": "^2.10.0"
+    "eslint-plugin-jest": "^28.11.0",
+    "nodemon": "^3.1.9",
+    "sort-package-json": "^2.15.1"
   },
   "volta": {
-    "node": "20.13.1"
+    "node": "23.8.0"
   },
   "monoLint": {
     "lintMarkdownLinks": {

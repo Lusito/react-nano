@@ -46,7 +46,7 @@ export function useSelector<TState = any, TAction extends Action = AnyAction, TR
     compare: (a: TResult, b: TResult) => boolean = compareRef,
 ) {
     const store = useStore<TState, TAction>();
-    const cache = useRef<{ value: TResult }>();
+    const cache = useRef<{ value: TResult } | null>(null);
 
     return useSyncExternalStore(store.subscribe, () => {
         const value = selector(store.getState());
